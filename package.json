@@ -4,7 +4,8 @@
   "description": "Site de Previsão do Tempo com funcionalidades de busca, previsão, e cidades favoritadas.",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon backend/src/app.ts"
+    "dev": "nodemon backend/src/app.ts",
+    "scss": "sass .\\frontend\\public\\src\\styles\\scss\\style.scss:.\\frontend\\public\\src\\styles\\css\\style.css --style compressed"
   },
   "keywords": [],
   "author": "",
@@ -17,12 +18,12 @@
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.1.9",
     "prisma": "^6.2.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.5",
-    "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   }
