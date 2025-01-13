@@ -1,0 +1,68 @@
+/* Importando fontes com subsets limitados para melhorar a performance */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* Reset básico e boas práticas */
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif; /* Fonte primária */
+  background-color: #1c1f24;
+  color: #a0d8f1;
+  line-height: 1.6; /* Melhor legibilidade */
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600; /* Consistência visual */
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: #0351a0;
+  color: #a0d8f1;
+
+  img {
+    height: 3.5rem;
+  }
+
+  h1 {
+    flex: 1;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .fa-circle-half-stroke {
+    margin-left: auto;
+    margin-right: 20px; // Espaçamento entre ícone e links de navegação
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+
+  nav {
+    display: flex;
+    gap: 10px; // Espaçamento entre os links
+
+    a {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+
+      &:hover {
+        text-decoration: underline;
+        color: #ffcc00;
+      }
+    }
+  }
+}
