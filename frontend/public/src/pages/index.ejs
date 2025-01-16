@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clima Já</title>
+    <!-- Estilos principais -->
     <link rel="stylesheet" href="/css/style.css" />
+    <!-- Font Awesome para ícones -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -13,89 +15,121 @@
       referrerpolicy="no-referrer"
     />
   </head>
+  <script defer src="/handlers/themeHandler.js"></script>
+  <script defer src="/handlers/weatherHandler.js"></script>
   <body>
+    <!-- Cabeçalho: logo, título e navegação -->
     <header id="header">
       <img src="ClimaJa-logo.png" alt="Logo ClimaJá!" />
       <h1>Bem Vindo ao ClimaJá!</h1>
       <i class="fa-solid fa-circle-half-stroke"></i>
       <nav>
-        <% if(user) { %>
-          <a href="/logout">Sair</a>
+        <% if (user) { %>
+        <a href="/logout">Sair</a>
         <% } else { %>
-          <a href="/login">Login</a>
-          <a href="/register">Registrar</a>
+        <a href="/login">Login</a>
+        <a href="/register">Registrar</a>
         <% } %>
       </nav>
     </header>
 
-    <main id="container">
-      <form id="search">
-        <i class="fa-solid fa-location-dot"></i>
-        <input
-          type="search"
-          name="city_name"
-          id="city_name"
-          placeholder="Qual cidade deseja saber o clima?"
-        />
-        <button type="submit">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-      </form>
+    <!-- Conteúdo principal -->
+    <main>
+      <!-- Formulário de busca por cidade -->
+      <div id="container">
+        <form id="search">
+          <i class="fa-solid fa-location-dot"></i>
+          <input
+            type="search"
+            name="city_name"
+            id="city_name"
+            placeholder="Deseja saber o clima de qual cidade"
+          />
+          <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
 
-      <section id="weather">
-        <h1 id="title">São Paulo, SP</h1>
+        <!-- Seção de exibição do clima -->
+        <section id="weather" class="show">
+          <h1 id="title">São Paulo, SP</h1>
 
-        <div id="infos">
-          <div class="temperature">
-            <img
-              id="temperature_img"
-              src="http://openweathermap.org/img/wn/04d@2x.png"
-              alt=""
-            />
+          <div id="infos">
+            <!-- Temperatura principal -->
+            <div id="temperature">
+              <img
+                id="temperature_img"
+                src="http://openweathermap.org/img/wn/04d@2x.png"
+                alt="Ícone de clima"
+              />
+              <div>
+                <p id="temperature_value">26 <sup>Cº</sup></p>
+                <p id="temperature_description">Ensolarado</p>
+              </div>
+            </div>
 
-            <div>
-              <p id="temperature_value">26 <sup>Cº</sup></p>
-              <p id="temperature_description">Ensolarado</p>
+            <!-- Informações adicionais -->
+            <div id="more_infos">
+              <div class="info">
+                <i
+                  class="fa-solid fa-temperature-high temperature-max-icon"
+                ></i>
+                <div>
+                  <h2>Temp. Máxima</h2>
+                  <p class="temperature_max">26 <sup>Cº</sup></p>
+                </div>
+              </div>
+              <div class="info">
+                <i class="fa-solid fa-temperature-low temperature-min-icon"></i>
+                <div>
+                  <h2>Temp. Mínima</h2>
+                  <p class="temperature_min">20 <sup>Cº</sup></p>
+                </div>
+              </div>
+              <div class="info">
+                <i class="fa-solid fa-droplet humidity-icon"></i>
+                <div>
+                  <h2>Humidade</h2>
+                  <p class="humidity">45%</p>
+                </div>
+              </div>
+              <div class="info">
+                <i class="fa-solid fa-wind wind-icon"></i>
+                <div>
+                  <h2>Vento</h2>
+                  <p class="wind">45 km/h</p>
+                </div>
+              </div>
             </div>
           </div>
+        </section>
+      </div>
 
-          <div class="more_infos">
-            <div class="info">
-              <i class="fa-solid fa-temperature-high temperature-max-icon"></i>
-              <div>
-                <h2>Temp. Máxima</h2>
-                <p class="temperature_max">26 <sup>Cº</sup></p>
-              </div>
-            </div>
-
-            <div class="info">
-              <i class="fa-solid fa-temperature-low temperature-min-icon"></i>
-              <div>
-                <h2>Temp. Mínima</h2>
-                <p class="temperature_min">20 <sup>Cº</sup></p>
-              </div>
-            </div>
-
-            <div class="info">
-              <i class="fa-solid fa-droplet humidity-icon"></i>
-              <div>
-                <h2>Humidade</h2>
-                <p class="humidity">45%</p>
-              </div>
-            </div>
-
-            <div class="info">
-              <i class="fa-solid fa-wind wind-icon"></i>
-              <div>
-                <h2>Vento</h2>
-                <p class="wind">45 km/h</p>
-              </div>
-            </div>
-          </div>
+      <section id="recomendations">
+        <!-- Recomendações de cidades favoritas -->
+        <% if (typeof user !== 'undefined' && user && user.favoriteCities &&
+        user.favoriteCities.length > 0) { %> %>
+        <div id="favorite-cities-user">
+          <h2>Cidades Favoritas</h2>
+          <ul>
+            <% user.favoriteCities.slice(0, 3).forEach(city => { %>
+            <li><%= city %></li>
+            <% }); %>
+          </ul>
         </div>
+        <% } %>
+
+        <!-- Avisa o visitante que ele precisa ter uma conta para salvar cidades favoritas -->
+        <% if (!user) { %>
+        <div id="favorite-cities-visitant">
+          <h2>Cidades Favoritas</h2>
+          <p>Você deve ter uma conta para salvar uma cidade como favorita.</p>
+        </div>
+        <% } %>
       </section>
 
-      <div id="alert"></div>
+      <!-- Alerta dinâmico -->
+      <div id="warn"></div>
     </main>
   </body>
 </html>

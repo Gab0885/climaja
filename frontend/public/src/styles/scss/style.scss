@@ -1,0 +1,335 @@
+/* Importando fontes com subsets limitados para melhorar a performance */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* Variáveis de tema */
+:root {
+  // Cores base para o tema escuro (atual)
+  --background: #1c1f24;
+  --card-bg: #2b3744;
+  --search-bg: #1c1f24;
+  --header-bg: #0351a0;
+  --temp-bg: #0f141b;
+  --text-primary: #ffffff;
+  --text-secondary: #a0d8f1;
+  --border-color: #bdbdbd;
+  --favorite-bg: #2d3c4a;
+  --favorite-item-bg: #1c1f24;
+  --favorite-hover-bg: #0351a0;
+  --favorite-hover-color: #ffcc00;
+  --box-shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Tema claro */
+[data-theme="light"] {
+  --background: #F5FAFF;
+  --card-bg: #ffffff;
+  --search-bg: #ffffff;
+  --header-bg: #2176e6;
+  --temp-bg: #e3e6e9;
+  --text-primary: #202124;
+  --text-secondary: #201d1d;
+  --border-color: #c7cad1;
+  --favorite-bg: #ffffff;
+  --favorite-item-bg: #f8f9fa;
+  --favorite-hover-bg: #e8f0fe;
+  --favorite-hover-color: #FFD700;
+  --box-shadow: rgba(0, 0, 0, 0.15);
+}
+
+/* Reset básico e boas práticas */
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--background);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: var(--header-bg);
+  color: var(--text-secondary);
+  transition: background-color 0.3s ease;
+  position: relative;
+
+  img {
+    height: 3.5rem;
+  }
+
+  h1 {
+    position: absolute; /* Centraliza o título independentemente dos outros elementos */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    margin: 0;
+    white-space: nowrap; /* Garante que o texto não quebre em várias linhas */
+  }
+
+  .fa-circle-half-stroke {
+    margin-left: auto;
+    margin-right: 20px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--favorite-hover-color);
+    }
+  }
+
+  nav {
+    display: flex;
+    gap: 10px;
+
+    a {
+      text-decoration: none;
+      color: var(--text-primary);
+      font-size: 1rem;
+      transition: color 0.3s ease;
+
+      &:hover {
+        text-decoration: underline;
+        color: var(--favorite-hover-color);
+      }
+    }
+  }
+}
+
+#favorite-cities-user {
+  width: 90%;
+  max-width: 405px;
+  margin: 2.5rem auto;
+  background-color: var(--favorite-bg);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 6px var(--box-shadow);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: var(--text-secondary);
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      background-color: var(--favorite-item-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: var(--favorite-hover-bg);
+        color: var(--favorite-hover-color);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+#favorite-cities-visitant {
+  width: 90%;
+  max-width: 405px;
+  margin: 2.5rem auto;
+  background-color: var(--favorite-bg);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 6px var(--box-shadow);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: var(--text-secondary);
+  }
+
+  p {
+    background-color: var(--favorite-item-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+  }
+}
+
+/* Estilos gerais do container principal */
+#container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 405px;
+  margin: 2rem auto;
+  background-color: var(--card-bg);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px var(--box-shadow);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estilo do formulário de busca */
+#search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.625rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--search-bg);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+
+  input {
+    border: none;
+    background-color: transparent;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    flex: 1;
+    transition: color 0.3s ease;
+
+    &::placeholder {
+      color: var(--text-primary);
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--text-secondary);
+    }
+  }
+}
+
+/* Estilos da seção de exibição do clima */
+#weather {
+  margin-top: 20px;
+  display: none;
+
+  #title {
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  &.show {
+    display: block;
+  }
+}
+
+/* Estilo da temperatura principal */
+#temperature {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: var(--temp-bg);
+  color: var(--text-primary);
+  border-radius: 20px;
+  padding: 20px;
+  transition: background-color 0.3s ease;
+
+  img {
+    filter: drop-shadow(2px 2px 2px var(--box-shadow));
+  }
+}
+
+#temperature_value {
+  font-weight: bold;
+  font-size: 50px;
+  line-height: 55px;
+}
+
+#temperature_description {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+/* Estilo das informações adicionais */
+#more_infos {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+
+  .info {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background-color: var(--card-bg);
+    box-shadow: 0px 0px 5px var(--box-shadow);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    i {
+      margin-right: 1rem;
+      font-size: 1.5rem;
+      width: 20%;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+/* Mantendo as cores dos ícones inalteradas pois são indicativas */
+.temperature-max-icon {
+  color: #c70202;
+}
+
+.temperature-min-icon {
+  color: rgb(47, 135, 236);
+}
+
+.humidity-icon {
+  color: #0464c4;
+}
+
+.wind-icon {
+  color: #b8aeaec5;
+}
