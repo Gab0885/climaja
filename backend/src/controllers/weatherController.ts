@@ -10,10 +10,10 @@ export async function getWeather(req: Request, res: Response): Promise<void> {
   }
 
   try {
-    const data = await getWeatherData(cityName);
-    res.json(data);
+    const weatherData = await getWeatherData(cityName);
+    res.json(weatherData);
   } catch (error) {
-    console.error("Erro ao buscar dados da API externa:", error);
-    res.status(500).json({ error: "Erro ao buscar dados da previsão do tempo." });
+    console.error("Erro no controlador:", error);
+    res.status(500).json({ error: "Erro ao obter os dados do clima." });
   }
 }
