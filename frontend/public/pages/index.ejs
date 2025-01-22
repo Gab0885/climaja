@@ -14,9 +14,13 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-  <script defer type="module" src="/src/scripts/main.js"></script>
-  <script defer type="module" src="/src/scripts/handlers/weatherHandler.js"></script>
-  <script defer src="/src/scripts/handlers/themeHandler.js"></script>
+    <!-- Scripts de interação -->
+    <script defer type="module" src="/src/scripts/main.js"></script>
+    <script defer type="module" src="/src/scripts/handlers/citySearchHandler.js"></script>
+    <script defer type="module" src="/src/scripts/utils/domUtils.js"></script>
+    <script defer type="module" src="/src/scripts/handlers/weatherHandler.js"></script>
+    <script defer type="module" src="/src/scripts/services/weatherService.js"></script>
+    <script defer src="/src/scripts/handlers/themeHandler.js"></script>
   </head>
   <body>
     <!-- Cabeçalho: logo, título e navegação -->
@@ -52,20 +56,20 @@
         </form>
 
         <!-- Seção de exibição do clima -->
-        <section id="weather" class="show">
-          <h1 id="title">São Paulo, SP</h1>
+        <section id="weather">
+          <h1 id="title"></h1>
 
           <div id="infos">
             <!-- Temperatura principal -->
             <div id="temperature">
               <img
                 id="temperature_img"
-                src="http://openweathermap.org/img/wn/04d@2x.png"
+                src=""
                 alt="Ícone de clima"
               />
               <div>
-                <p id="temperature_value">26 <sup>Cº</sup></p>
-                <p id="temperature_description">Ensolarado</p>
+                <p id="temperature_value"></p>
+                <p id="temperature_description"></p>
               </div>
             </div>
 
@@ -77,33 +81,35 @@
                 ></i>
                 <div>
                   <h2>Temp. Máxima</h2>
-                  <p class="temperature_max">26 <sup>Cº</sup></p>
+                  <p class="temperature_max"></p>
                 </div>
               </div>
               <div class="info">
                 <i class="fa-solid fa-temperature-low temperature-min-icon"></i>
                 <div>
                   <h2>Temp. Mínima</h2>
-                  <p class="temperature_min">20 <sup>Cº</sup></p>
+                  <p class="temperature_min"></p>
                 </div>
               </div>
               <div class="info">
                 <i class="fa-solid fa-droplet humidity-icon"></i>
                 <div>
                   <h2>Humidade</h2>
-                  <p class="humidity">45%</p>
+                  <p class="humidity"></p>
                 </div>
               </div>
               <div class="info">
                 <i class="fa-solid fa-wind wind-icon"></i>
                 <div>
                   <h2>Vento</h2>
-                  <p class="wind">45 km/h</p>
+                  <p class="wind"></p>
                 </div>
               </div>
             </div>
           </div>
         </section>
+        <!-- Alerta dinâmico -->
+        <div id="warn"></div>
       </div>
 
       <section id="recomendations">
@@ -128,9 +134,15 @@
         </div>
         <% } %>
       </section>
-
-      <!-- Alerta dinâmico -->
-      <div id="warn"></div>
     </main>
+
+    <footer class="footer">
+        Made with
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#f64348" stroke="#f64348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        by
+        <a href="https://github.com/Gab0885" target="_blank">Gabriel Dias</a>
+    </footer>
   </body>
 </html>

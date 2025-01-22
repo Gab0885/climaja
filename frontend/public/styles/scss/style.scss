@@ -21,7 +21,7 @@
 
 /* Tema claro */
 [data-theme="light"] {
-  --background: #F5FAFF;
+  --background: #f5faff;
   --card-bg: #ffffff;
   --search-bg: #ffffff;
   --header-bg: #2176e6;
@@ -32,7 +32,7 @@
   --favorite-bg: #ffffff;
   --favorite-item-bg: #f8f9fa;
   --favorite-hover-bg: #e8f0fe;
-  --favorite-hover-color: #FFD700;
+  --favorite-hover-color: #ffd700;
   --box-shadow: rgba(0, 0, 0, 0.15);
 }
 
@@ -332,4 +332,66 @@ header {
 
 .wind-icon {
   color: #b8aeaec5;
+}
+
+#warn {
+  display: none;
+
+  &.show {
+    display: block;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--background);
+    color: #721c24;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+/* Estilos do Footer */
+.footer {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 1rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0px -2px 4px var(--box-shadow);
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: #f64348;
+    stroke: #f64348;
+    margin-bottom: 2px;
+    transition: fill 0.3s ease;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 600;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--favorite-hover-color);
+    }
+  }
+
+  /* Estilo para o hover do SVG */
+  svg:hover {
+    fill: var(--favorite-hover-color);
+    stroke: var(--favorite-hover-color);
+  }
 }
