@@ -1,0 +1,208 @@
+/* Importando fontes com subsets limitados para melhorar a performance */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;500&display=swap");
+
+/* Variáveis globais do sistema */
+$spacing: (
+  "sm": 8px,
+  // Espaçamento pequeno
+  "md": 16px,
+  // Espaçamento médio
+  "lg": 24px,
+  // Espaçamento grande
+  "xl": 32px // Espaçamento extra grande,
+);
+
+$breakpoints: (
+  "mobile": 480px,
+  // Largura máxima para dispositivos móveis
+  "tablet": 768px,
+  // Largura máxima para tablets
+  "desktop": 1024px // Largura mínima para desktops,
+);
+
+/* Definições de temas e variáveis relacionadas */
+:root {
+  /* Cores para o tema escuro (padrão) */
+  --bg: #1c1f24; // Cor de fundo
+  --card-bg: #2b3744; // Fundo de cartões
+  --text: #ffffff; // Texto principal
+  --text-alt: #a0d8f1; // Texto secundário
+  --outline: #658899; // Cor do contorno para foco e seleção
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3); // Sombra padrão
+
+  /* Definições de fontes */
+  --font-main: "Poppins", sans-serif; // Fonte principal
+  --font-body: "Roboto", sans-serif; // Fonte secundária
+
+  /* Tempo de transição padrão */
+  --transition: 0.3s ease;
+}
+
+/* Configurações para o tema claro */
+[data-theme="light"] {
+  --bg: #f5faff; // Cor de fundo clara
+  --card-bg: #ffffff; // Fundo de cartões claro
+  --text: #202124; // Texto principal escuro
+  --text-alt: #4a90e2; // Texto secundário azul
+  --outline: #4a90e2; // Cor do contorno azul
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.15); // Sombra leve
+}
+
+/* Reset e estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  padding: map-get($spacing, "md");
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: var(--transition);
+}
+
+/* Componentes */
+.form-container {
+  width: min(90%, 600px); // Largura máxima da área do formulário
+  margin: auto;
+  padding: map-get($spacing, "xl");
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: map-get($spacing, "lg");
+}
+
+.form-title {
+  font-family: var(--font-main);
+  font-weight: 600;
+  color: var(--text);
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 3px;
+    margin-top: map-get($spacing, "sm");
+    background: var(--text-alt);
+    border-radius: 3px;
+  }
+}
+
+.btn-default {
+  padding: map-get($spacing, "sm") map-get($spacing, "md");
+  background: var(--bg);
+  color: var(--text);
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--outline);
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: map-get($spacing, "lg");
+}
+
+.input-container {
+  display: grid;
+  gap: map-get($spacing, "md");
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.input-field {
+  display: flex;
+  align-items: center;
+  background: var(--text);
+  border-radius: 8px;
+  transition: var(--transition);
+
+  &:focus-within {
+    outline: 2px solid var(--outline);
+  }
+
+  i {
+    width: 40px;
+    color: var(--bg);
+    text-align: center;
+  }
+}
+
+.form-control {
+  width: 100%;
+  padding: map-get($spacing, "md");
+  border: none;
+  background: transparent;
+  color: var(--bg);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+/* Classes utilitárias */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Estilos responsivos */
+@media (max-width: map-get($breakpoints, "mobile")) {
+  .form-container {
+    width: 100%;
+    padding: map-get($spacing, "md");
+  }
+
+  .form-header {
+    flex-direction: column;
+    gap: map-get($spacing, "md");
+    text-align: center;
+
+    .form-title::after {
+      margin: map-get($spacing, "sm") auto 0;
+    }
+  }
+}
+
+@media (min-width: map-get($breakpoints, "desktop")) {
+  .input-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Personalizações para autofill de inputs */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--text) inset !important;
+  -webkit-text-fill-color: var(--bg) !important;
+}
