@@ -1,11 +1,20 @@
 /* Importando fontes com subsets limitados para melhorar a performance */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
+// Variáveis de spacing
+$spacing-lg: 2rem;
+$spacing-md: 1rem;
+
+// Variáveis de Breakpoints
+$breakpoint-sm: 436px;
+$breakpoint-md: 700px;
+$breakpoint-xl: 1200px;
+
 /* Variáveis de tema */
 :root {
   // Cores base para o tema escuro (atual)
   --background: #1c1f24;
-  --card-bg: #2b3744;
+  --card-bg: #2b3845;
   --search-bg: #1c1f24;
   --header-bg: #0351a0;
   --temp-bg: #0f141b;
@@ -215,6 +224,11 @@ header {
     flex: 1;
     transition: color 0.3s ease;
 
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px var(--search-bg) inset !important;
+      -webkit-text-fill-color: var(--text-primary) !important;
+    }
+
     &::placeholder {
       color: var(--text-primary);
     }
@@ -278,7 +292,8 @@ header {
 }
 
 #temperature_description {
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1rem;
   text-transform: capitalize;
 }
 
@@ -393,5 +408,140 @@ header {
   svg:hover {
     fill: var(--favorite-hover-color);
     stroke: var(--favorite-hover-color);
+  }
+}
+
+@media (min-width: $breakpoint-xl) {
+  main {
+    padding: var($spacing-lg);
+
+    #weather {
+      #infos {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var($spacing-md);
+      }
+    }
+  }
+}
+
+// Media Queries para Responsividade
+@media (max-width: $breakpoint-md) {
+  #header {
+    display: grid;
+    grid-template-areas:
+      "logo title icon"
+      "nav nav nav";
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+
+    img {
+      grid-area: logo;
+      max-width: 105px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      grid-area: title;
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    i {
+      grid-area: icon;
+      margin: 0 auto;
+      font-size: 1.6rem;
+    }
+
+    nav {
+      grid-area: nav;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+
+      a {
+        padding: 0px 20px; /* Botões maiores para toque */
+        font-size: 1rem;
+        text-align: center;
+        width: 100%; /* Centraliza os botões em telas menores */
+        max-width: 215px;
+      }
+    }
+  }
+
+  main {
+    #container {
+      flex-direction: column;
+
+      #search {
+        width: 100%;
+        max-width: 100%;
+        input {
+          padding: 0.5rem;
+        }
+        button {
+          padding: 0.5rem;
+        }
+      }
+
+      #weather {
+        #infos {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+  }
+}
+
+/* Estilo responsivo para até 436px */
+@media (max-width: $breakpoint-sm) {
+  #header {
+    grid-template-areas:
+      "logo logo"
+      "title title"
+      "icon icon"
+      "nav nav";
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    img {
+      grid-area: logo;
+      max-width: 80px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      grid-area: title;
+      font-size: 1.2rem;
+      margin: 0;
+      text-align: center;
+      padding-bottom: 15px;
+    }
+
+    i {
+      grid-area: icon;
+      font-size: 1.5rem;
+      margin: 0 auto;
+      padding-left: 0.5rem;
+    }
+
+    nav {
+      grid-area: nav;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+
+      a {
+        font-size: 0.9rem;
+        max-width: 150px;
+      }
+    }
+  }
+
+  /* Estilizando o input do #weather */
+  #search input::placeholder {
+    font-size: 0.8rem;
   }
 }

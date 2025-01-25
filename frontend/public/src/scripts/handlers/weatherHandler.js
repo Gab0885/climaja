@@ -18,14 +18,19 @@ export function updateWeatherUI(data) {
     document.querySelector("#weather")?.classList.add("show");
     // Função auxiliar para formatação de temperaturas
     const formatTemperature = (temp) => `${temp.toFixed(1).replace('.', ',')} <sup>Cº</sup>`;
+    // Lógica para obter a descrição e o ícone mais relevante
+    const mainWeather = data.weather[0]; // Prioriza o primeiro item
+    const description = mainWeather?.description || "Informação não disponível";
+    const icon = mainWeather?.icon || "01d";
     // Atualização dos valores no DOM
     cityElement.textContent = `${data.name}, ${data.sys.country}`;
+    temperatureDescriptionElement.textContent = description; // Atualiza a descrição
     temperatureElement.innerHTML = formatTemperature(data.main.temp);
     temperatureMaxElement.innerHTML = formatTemperature(data.main.temp_max);
     temperatureMinElement.innerHTML = formatTemperature(data.main.temp_min);
     humidityElement.textContent = `${data.main.humidity}%`;
     windElement.textContent = `${data.wind.speed.toFixed(1)} km/h`;
     // Atualiza o ícone de clima
-    temperatureImgElement.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-    temperatureImgElement.alt = data.weather[0].description;
+    temperatureImgElement.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+    temperatureImgElement.alt = description;
 }

@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clima Já</title>
+    <title>Clima Já - Pagina de previsão do tempo</title>
     <!-- Estilos principais -->
-    <link rel="stylesheet" href="/styles/css/style.css" />
+    <link rel="stylesheet" href="/styles/css/homePageStyles.css" />
     <!-- Font Awesome para ícones -->
     <link
       rel="stylesheet"
@@ -14,8 +14,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="shortcut icon" type="imagex/png" href="/assets/climaJa-minilogo.ico">
     <!-- Scripts de interação -->
-    <script defer type="module" src="/src/scripts/main.js"></script>
+    <script defer type="module" src="/src/scripts/homePageMain.js"></script>
     <script defer type="module" src="/src/scripts/handlers/citySearchHandler.js"></script>
     <script defer type="module" src="/src/scripts/utils/domUtils.js"></script>
     <script defer type="module" src="/src/scripts/handlers/weatherHandler.js"></script>
@@ -33,7 +34,7 @@
         <a href="/logout">Sair</a>
         <% } else { %>
         <a href="/login">Login</a>
-        <a href="/register">Registrar</a>
+        <a href="/registro">Registrar</a>
         <% } %>
       </nav>
     </header>
@@ -80,14 +81,14 @@
                   class="fa-solid fa-temperature-high temperature-max-icon"
                 ></i>
                 <div>
-                  <h2>Temp. Máxima</h2>
+                  <h2>Máxima</h2>
                   <p class="temperature_max"></p>
                 </div>
               </div>
               <div class="info">
                 <i class="fa-solid fa-temperature-low temperature-min-icon"></i>
                 <div>
-                  <h2>Temp. Mínima</h2>
+                  <h2>Mínima</h2>
                   <p class="temperature_min"></p>
                 </div>
               </div>
