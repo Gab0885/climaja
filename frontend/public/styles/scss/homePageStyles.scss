@@ -33,7 +33,7 @@ $breakpoint-xl: 1200px;
   --background: #f5faff;
   --card-bg: #ffffff;
   --search-bg: #ffffff;
-  --header-bg: #2176e6;
+  --header-bg: #3e82da;
   --temp-bg: #e3e6e9;
   --text-primary: #202124;
   --text-secondary: #201d1d;
@@ -100,6 +100,7 @@ header {
     transition: color 0.3s ease;
 
     &:hover {
+      transform: translateY(-1px);
       color: var(--favorite-hover-color);
     }
   }
@@ -116,6 +117,7 @@ header {
 
       &:hover {
         text-decoration: underline;
+        transform: translateY(-1px);
         color: var(--favorite-hover-color);
       }
     }
@@ -154,6 +156,7 @@ header {
       transition: all 0.3s ease;
 
       &:hover {
+        transform: translateY(-1px);
         background-color: var(--favorite-hover-bg);
         color: var(--favorite-hover-color);
         cursor: pointer;
@@ -246,6 +249,7 @@ header {
     transition: color 0.3s ease;
 
     &:hover {
+      transform: translateY(-1px);
       color: var(--text-secondary);
     }
   }
@@ -400,6 +404,7 @@ header {
     transition: color 0.3s ease;
 
     &:hover {
+      transform: translateY(-1px);
       color: var(--favorite-hover-color);
     }
   }

@@ -9,7 +9,7 @@ $spacing: (
   // Espaçamento médio
   "lg": 24px,
   // Espaçamento grande
-  "xl": 32px // Espaçamento extra grande,
+  "xl": 32px // Espaçamento extra grande,,,,,
 );
 
 $breakpoints: (
@@ -17,7 +17,7 @@ $breakpoints: (
   // Largura máxima para dispositivos móveis
   "tablet": 768px,
   // Largura máxima para tablets
-  "desktop": 1024px // Largura mínima para desktops,
+  "desktop": 1024px // Largura mínima para desktops,,,,,
 );
 
 /* Definições de temas e variáveis relacionadas */
@@ -29,6 +29,7 @@ $breakpoints: (
   --text-alt: #a0d8f1; // Texto secundário
   --outline: #658899; // Cor do contorno para foco e seleção
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.3); // Sombra padrão
+  --highlight: #FFCC00; // Cor de destaque
 
   /* Definições de fontes */
   --font-main: "Poppins", sans-serif; // Fonte principal
@@ -40,12 +41,13 @@ $breakpoints: (
 
 /* Configurações para o tema claro */
 [data-theme="light"] {
-  --bg: #f5faff; // Cor de fundo clara
+  --bg: #F5FAFF; // Cor de fundo clara
   --card-bg: #ffffff; // Fundo de cartões claro
-  --text: #202124; // Texto principal escuro
-  --text-alt: #4a90e2; // Texto secundário azul
+  --text: #1E1E1E; // Texto principal escuro
+  --text-alt: #A3D4F7; // Texto secundário azul
   --outline: #4a90e2; // Cor do contorno azul
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.15); // Sombra leve
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.3); // Sombra leve
+  --highlight: #FFCC00; // Cor de destaque
 }
 
 /* Reset e estilos base */
@@ -111,7 +113,7 @@ body {
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow);
+    background-color: var(--highlight);
   }
 
   &:focus-visible {
@@ -126,7 +128,7 @@ body {
 }
 
 .input-container {
-  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: map-get($spacing, "md");
 }
 
@@ -179,7 +181,7 @@ body {
 
 /* Estilos responsivos */
 @media (max-width: map-get($breakpoints, "mobile")) {
-  .form-container {
+  .form-container, .message {
     width: 100%;
     padding: map-get($spacing, "md");
   }
@@ -195,14 +197,37 @@ body {
   }
 }
 
-@media (min-width: map-get($breakpoints, "desktop")) {
-  .input-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 /* Personalizações para autofill de inputs */
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px var(--text) inset !important;
   -webkit-text-fill-color: var(--bg) !important;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  color: #721c24;
+  font-weight: 600;
+  text-align: center;
+  position: absolute; /* Tornando-a absoluta para posicionamento relativo */
+  top: 10%; /* Distância do topo da tela */
+  left: 50%;
+  transform: translateX(-50%); /* Centraliza horizontalmente */
+  width: min(90%, 600px); /* Largura igual à do formulário */
+  box-shadow: var(--shadow);
+}
+
+.success {
+  background-color: var(--bg);
+  color: #155724;
+}
+
+.error {
+  background-color: var(--card-bg);
+  color: #721c24;
 }

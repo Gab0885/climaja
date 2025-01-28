@@ -2,7 +2,9 @@
 import express from "express";
 import path from "path";
 import { weatherRouter } from "./routes/weatherRoutes";
-import { router } from "./routes/routes";
+import { router as homeRoutes } from "./routes/homeRouters";
+import { router as authRoutes } from "./routes/authRoutes";
+import { router as userRoutes } from "./routes/userRoutes";
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
@@ -21,7 +23,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Rotas
-app.use(router);
+app.use("/", homeRoutes);
+app.use("/auth", authRoutes);
+app.use("/user", userRoutes)
 app.use("/api", weatherRouter);
 
 // Configuração da porta
