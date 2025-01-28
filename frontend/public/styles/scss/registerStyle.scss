@@ -1,60 +1,63 @@
 /* Importando fontes com subsets limitados para melhorar a performance */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;500&display=swap&subset=latin");
 
 /* Variáveis globais do sistema */
+// Espaçamentos
 $spacing: (
   "sm": 8px,
-  // Espaçamento pequeno
   "md": 16px,
-  // Espaçamento médio
   "lg": 24px,
-  // Espaçamento grande
-  "xl": 32px // Espaçamento extra grande,,,,,
+  "xl": 32px,
 );
 
+// Breakpoints
 $breakpoints: (
   "mobile": 480px,
-  // Largura máxima para dispositivos móveis
   "tablet": 768px,
-  // Largura máxima para tablets
-  "desktop": 1024px // Largura mínima para desktops,,,,,
+  "desktop": 1024px,
 );
 
 /* Definições de temas e variáveis relacionadas */
 :root {
-  /* Cores para o tema escuro (padrão) */
-  --bg: #1c1f24; // Cor de fundo
-  --card-bg: #2b3744; // Fundo de cartões
-  --text: #ffffff; // Texto principal
-  --text-alt: #a0d8f1; // Texto secundário
-  --outline: #658899; // Cor do contorno para foco e seleção
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3); // Sombra padrão
-  --highlight: #FFCC00; // Cor de destaque
+  // Cores base
+  --color-error: #da0000;
+  --color-success: #1ba53b;
 
-  /* Definições de fontes */
-  --font-main: "Poppins", sans-serif; // Fonte principal
-  --font-body: "Roboto", sans-serif; // Fonte secundária
+  // Tema escuro
+  --bg: #1c1f24;
+  --card-bg: #2b3744;
+  --btn-bg: #ffffff;
+  --input-bg: #1f1f1f;
+  --text: #ffffff;
+  --text-alt: #a0d8f1;
+  --outline: #658899;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --highlight: #ffcc00;
 
-  /* Tempo de transição padrão */
+  // Fontes
+  --font-main: "Poppins", sans-serif;
+  --font-body: "Roboto", sans-serif;
+
+  // Transições
   --transition: 0.3s ease;
 }
 
-/* Configurações para o tema claro */
 [data-theme="light"] {
-  --bg: #F5FAFF; // Cor de fundo clara
-  --card-bg: #ffffff; // Fundo de cartões claro
-  --text: #1E1E1E; // Texto principal escuro
-  --text-alt: #A3D4F7; // Texto secundário azul
-  --outline: #4a90e2; // Cor do contorno azul
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.3); // Sombra leve
-  --highlight: #FFCC00; // Cor de destaque
+  --bg: #f5faff;
+  --card-bg: #ffffff;
+  --btn-bg: #333333;
+  --input-bg: #d3d3d3;
+  --text: #1e1e1e;
+  --text-alt: #a3d4f7;
+  --outline: #4a90e2;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Reset e estilos base */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -62,20 +65,23 @@ body {
   min-height: 100vh;
   padding: map-get($spacing, "md");
   font-family: var(--font-body);
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--text);
   line-height: 1.6;
-  transition: var(--transition);
+  transition: background-color var(--transition), color var(--transition);
 }
 
 /* Componentes */
 .form-container {
-  width: min(90%, 600px); // Largura máxima da área do formulário
+  --form-max-width: 600px;
+
+  width: min(90%, var(--form-max-width));
   margin: auto;
   padding: map-get($spacing, "xl");
   background: var(--card-bg);
   border-radius: 12px;
   box-shadow: var(--shadow);
+  position: relative; // Contexto para posicionamento absoluto
 }
 
 .form-header {
@@ -103,8 +109,8 @@ body {
 
 .btn-default {
   padding: map-get($spacing, "sm") map-get($spacing, "md");
-  background: var(--bg);
-  color: var(--text);
+  background: var(--btn-bg);
+  color: var(--bg);
   border: none;
   border-radius: 8px;
   font-weight: 500;
@@ -128,7 +134,8 @@ body {
 }
 
 .input-container {
-  grid-template-columns: repeat(2, 1fr);
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   gap: map-get($spacing, "md");
 }
 
@@ -141,18 +148,27 @@ body {
 .input-field {
   display: flex;
   align-items: center;
-  background: var(--text);
+  background: var(--input-bg);
   border-radius: 8px;
-  transition: var(--transition);
+  transition: outline var(--transition), box-shadow var(--transition);
 
   &:focus-within {
     outline: 2px solid var(--outline);
+    box-shadow: 0 2px 8px rgba(var(--outline), 0.2);
   }
 
   i {
     width: 40px;
-    color: var(--bg);
+    color: var(--btn-bg);
     text-align: center;
+  }
+}
+
+.password-icon {
+  cursor: pointer;
+  &:hover {
+    transform: translateY(-2px);
+    color: var(--highlight);
   }
 }
 
@@ -161,27 +177,17 @@ body {
   padding: map-get($spacing, "md");
   border: none;
   background: transparent;
-  color: var(--bg);
+  color: var(--text);
 
   &:focus {
     outline: none;
   }
 }
 
-/* Classes utilitárias */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
 /* Estilos responsivos */
 @media (max-width: map-get($breakpoints, "mobile")) {
-  .form-container, .message {
+  .form-container,
+  .message {
     width: 100%;
     padding: map-get($spacing, "md");
   }
@@ -197,37 +203,43 @@ body {
   }
 }
 
-/* Personalizações para autofill de inputs */
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px var(--text) inset !important;
-  -webkit-text-fill-color: var(--bg) !important;
-}
-
 .message {
+  --message-width: min(90%, 600px);
+
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  padding: 10px;
+  margin-top: map-get($spacing, "xl");
+  padding: map-get($spacing, "md");
   border-radius: 8px;
-  background-color: var(--card-bg);
-  color: #721c24;
-  font-weight: 600;
-  text-align: center;
-  position: absolute; /* Tornando-a absoluta para posicionamento relativo */
-  top: 10%; /* Distância do topo da tela */
-  left: 50%;
-  transform: translateX(-50%); /* Centraliza horizontalmente */
-  width: min(90%, 600px); /* Largura igual à do formulário */
   box-shadow: var(--shadow);
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--message-width);
 }
 
 .success {
-  background-color: var(--bg);
-  color: #155724;
+  background-color: var(--card-bg);
+  color: var(--color-success);
 }
 
 .error {
   background-color: var(--card-bg);
-  color: #721c24;
+  color: var(--color-error);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Personalizações para autofill de inputs */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset;
+  -webkit-text-fill-color: var(--text);
+  caret-color: var(--bg); // Melhoria de acessibilidade
 }

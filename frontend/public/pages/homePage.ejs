@@ -14,13 +14,29 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="shortcut icon" type="imagex/png" href="/assets/climaJa-minilogo.ico">
+    <link rel="icon" type="imagex/png" href="/assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+    
     <!-- Scripts de interação -->
     <script defer type="module" src="/src/scripts/homePageMain.js"></script>
-    <script defer type="module" src="/src/scripts/handlers/citySearchHandler.js"></script>
+    <script
+      defer
+      type="module"
+      src="/src/scripts/handlers/citySearchHandler.js"
+    ></script>
     <script defer type="module" src="/src/scripts/utils/domUtils.js"></script>
-    <script defer type="module" src="/src/scripts/handlers/weatherHandler.js"></script>
-    <script defer type="module" src="/src/scripts/services/weatherService.js"></script>
+    <script
+      defer
+      type="module"
+      src="/src/scripts/handlers/weatherHandler.js"
+    ></script>
+    <script
+      defer
+      type="module"
+      src="/src/scripts/services/weatherService.js"
+    ></script>
     <script defer src="/src/scripts/handlers/themeHandler.js"></script>
   </head>
   <body>
@@ -33,8 +49,8 @@
         <% if (user) { %>
         <a href="/logout">Sair</a>
         <% } else { %>
-        <a href="/login">Login</a>
-        <a href="/registro">Registrar</a>
+        <a href="/auth/login">Login</a>
+        <a href="/auth/registro">Registrar</a>
         <% } %>
       </nav>
     </header>
@@ -63,11 +79,7 @@
           <div id="infos">
             <!-- Temperatura principal -->
             <div id="temperature">
-              <img
-                id="temperature_img"
-                src=""
-                alt="Ícone de clima"
-              />
+              <img id="temperature_img" src="" alt="Ícone de clima" />
               <div>
                 <p id="temperature_value"></p>
                 <p id="temperature_description"></p>
@@ -138,12 +150,24 @@
     </main>
 
     <footer class="footer">
-        Made with
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#f64348" stroke="#f64348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-        </svg>
-        by
-        <a href="https://github.com/Gab0885" target="_blank">Gabriel Dias</a>
+      Made with
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="#f64348"
+        stroke="#f64348"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+        ></path>
+      </svg>
+      by
+      <a href="https://github.com/Gab0885" target="_blank">Gabriel Dias</a>
     </footer>
   </body>
 </html>
