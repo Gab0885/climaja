@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
 
 export const renderHomePage = (req: Request, res: Response) => {
-    res.render('homePage', { user: null });
+    res.render('homePage');
 };

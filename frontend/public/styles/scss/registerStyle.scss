@@ -203,32 +203,35 @@ body {
   }
 }
 
-.message {
-  --message-width: min(90%, 600px);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: map-get($spacing, "xl");
-  padding: map-get($spacing, "md");
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: var(--message-width);
-}
-
 .success {
-  background-color: var(--card-bg);
   color: var(--color-success);
 }
 
 .error {
-  background-color: var(--card-bg);
+  margin-top: 0.5rem;
   color: var(--color-error);
 }
+
+.input-box.invalid {
+  .form-label  {
+    color: var(--color-error);
+  }
+
+  .input-field {
+    border: 2px solid var(--color-error);
+  }
+}
+
+.input-box.valid {
+  .form-label  {
+    color: var(--color-success);
+  }
+
+  .input-field {
+    border: 2px solid var(--color-success);
+  }
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   * {

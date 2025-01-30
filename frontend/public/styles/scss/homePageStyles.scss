@@ -12,6 +12,9 @@ $breakpoint-xl: 1200px;
 
 /* Variáveis de tema */
 :root {
+  // Cores base
+  --color-error: #da0000;
+
   // Cores base para o tema escuro (atual)
   --background: #1c1f24;
   --card-bg: #2b3845;
@@ -25,6 +28,7 @@ $breakpoint-xl: 1200px;
   --favorite-item-bg: #1c1f24;
   --favorite-hover-bg: #0351a0;
   --favorite-hover-color: #ffcc00;
+  --highlight: #ffcc00;
   --box-shadow: rgba(0, 0, 0, 0.4);
 }
 
@@ -41,7 +45,8 @@ $breakpoint-xl: 1200px;
   --favorite-bg: #ffffff;
   --favorite-item-bg: #f8f9fa;
   --favorite-hover-bg: #e8f0fe;
-  --favorite-hover-color: #ffd700;
+  --favorite-hover-color: #3e82da;
+  --highlight: #ffcc00;
   --box-shadow: rgba(0, 0, 0, 0.4);
 }
 
@@ -101,7 +106,7 @@ header {
 
     &:hover {
       transform: translateY(-1px);
-      color: var(--favorite-hover-color);
+      color: var(--highlight);
     }
   }
 
@@ -118,7 +123,7 @@ header {
       &:hover {
         text-decoration: underline;
         transform: translateY(-1px);
-        color: var(--favorite-hover-color);
+        color: var(--highlight);
       }
     }
   }
@@ -361,8 +366,8 @@ header {
     margin-top: 20px;
     padding: 10px;
     border-radius: 8px;
-    background-color: var(--background);
-    color: #721c24;
+    background-color: var(--search-bg);
+    color: var(--color-error);
     font-weight: 600;
     text-align: center;
   }
@@ -373,7 +378,7 @@ header {
   background-color: var(--card-bg);
   color: var(--text-primary);
   text-align: center;
-  padding: 1.5rem;
+  padding: 1rem;
   font-size: 1rem;
   border-top: 1px solid var(--border-color);
   display: flex;

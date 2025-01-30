@@ -21,22 +21,10 @@
     
     <!-- Scripts de interação -->
     <script defer type="module" src="/src/scripts/homePageMain.js"></script>
-    <script
-      defer
-      type="module"
-      src="/src/scripts/handlers/citySearchHandler.js"
-    ></script>
+    <script defer type="module" src="/src/scripts/handlers/citySearchHandler.js"></script>
     <script defer type="module" src="/src/scripts/utils/domUtils.js"></script>
-    <script
-      defer
-      type="module"
-      src="/src/scripts/handlers/weatherHandler.js"
-    ></script>
-    <script
-      defer
-      type="module"
-      src="/src/scripts/services/weatherService.js"
-    ></script>
+    <script defer type="module" src="/src/scripts/handlers/weatherHandler.js"></script>
+    <script defer type="module" src="/src/scripts/services/weatherService.js"></script>
     <script defer src="/src/scripts/handlers/themeHandler.js"></script>
   </head>
   <body>
@@ -46,7 +34,7 @@
       <h1>Bem Vindo ao ClimaJá!</h1>
       <i class="fa-solid fa-circle-half-stroke"></i>
       <nav>
-        <% if (user) { %>
+        <% if (typeof user !== 'undefined' && user) { %>
         <a href="/logout">Sair</a>
         <% } else { %>
         <a href="/auth/login">Login</a>
@@ -140,7 +128,7 @@
         <% } %>
 
         <!-- Avisa o visitante que ele precisa ter uma conta para salvar cidades favoritas -->
-        <% if (!user) { %>
+        <% if (typeof user === 'undefined') { %>
         <div id="favorite-cities-visitant">
           <h2>Cidades Favoritas</h2>
           <p>Você deve ter uma conta para salvar uma cidade como favorita.</p>
