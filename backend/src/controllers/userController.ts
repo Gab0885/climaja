@@ -8,11 +8,16 @@ export const registerUser = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const { email, password, confirm_password, name } = req.body;
+    const { name, email, password, confirm_password } = req.body;
 
     // Validação de senha
     if (password !== confirm_password) {
       return res.status(400).json({ error: "As senhas não coincidem" });
+    }
+
+    // Validação de nome
+    if (!name || name.trim().length < 3) {
+      return res.status(400).json({ error: "Nome inválido" });
     }
 
     // Verificar usuário existente
@@ -23,12 +28,29 @@ export const registerUser = async (
 
     // Criar usuário
     const user = await createUser({ name, email, password });
-    const token = generateToken(user.id);
+    const token = generateToken(user.id, user.name);
 
-    // Resposta de sucesso
-    return res.status(201).json({ token }); // Adicione return aqui
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 3600000, // 1 hora
+    });
+
+    return res.status(201).json({ message: "Usuário registrado com sucesso" });
   } catch (error) {
     console.error("Erro no registro:", error);
     return res.status(500).json({ error: "Erro interno do servidor" });
   }
+};
+
+export const logoutUser = (req: Request, res: Response) => {
+  // Limpa o cookie
+  res.clearCookie('jwt', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    path: '/'
+  });
+  res.redirect('/');
 };

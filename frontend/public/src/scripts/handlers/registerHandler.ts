@@ -89,9 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
           throw new Error(errorData.error || "Erro no registro");
         }
 
-        // Salvar token e redirecionar
-        const { token } = await response.json();
-        localStorage.setItem("authToken", token);
         window.location.href = "/";
       } catch (error) {
         // Mostrar erro para o usuário

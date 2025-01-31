@@ -15,10 +15,24 @@
       referrerpolicy="no-referrer"
     />
     <link rel="icon" type="imagex/png" href="/assets/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
-    
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon-16x16.png"
+    />
+
     <!-- Scripts de interação -->
     <script defer type="module" src="/src/scripts/homePageMain.js"></script>
     <script defer type="module" src="/src/scripts/handlers/citySearchHandler.js"></script>
@@ -32,10 +46,11 @@
     <header id="header">
       <img src="/assets/ClimaJa-logo.png" alt="Logo ClimaJá!" />
       <h1>Bem Vindo ao ClimaJá!</h1>
-      <i class="fa-solid fa-circle-half-stroke"></i>
       <nav>
+        <i class="fa-solid fa-circle-half-stroke"></i>
         <% if (typeof user !== 'undefined' && user) { %>
-        <a href="/logout">Sair</a>
+        <p>Olá, <span id="userName"><%= user.name %></span>!</p>
+        <a href="/auth/logout">Sair</a>
         <% } else { %>
         <a href="/auth/login">Login</a>
         <a href="/auth/registro">Registrar</a>

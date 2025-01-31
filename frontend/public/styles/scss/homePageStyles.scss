@@ -126,6 +126,17 @@ header {
         color: var(--highlight);
       }
     }
+
+    p {
+      color: var(--text-primary);
+      font-size: 1rem;
+      margin-left: 1rem;
+    }
+
+    #userName {
+      font-weight: 600;
+      color: var(--highlight);
+    }
   }
 }
 
