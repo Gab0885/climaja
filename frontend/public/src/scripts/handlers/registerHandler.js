@@ -74,9 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     const errorData = await response.json();
                     throw new Error(errorData.error || "Erro no registro");
                 }
-                // Salvar token e redirecionar
-                const { token } = await response.json();
-                localStorage.setItem("authToken", token);
                 window.location.href = "/";
             }
             catch (error) {
