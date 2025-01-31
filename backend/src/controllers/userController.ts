@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { createUser } from "../services/userService";
 import { prisma } from "../config/database";
 import { generateToken } from "../utils/jwt";
+import { comparePassword } from "../utils/hash";
 
 export const registerUser = async (
   req: Request,
@@ -40,6 +41,51 @@ export const registerUser = async (
     return res.status(201).json({ message: "Usuário registrado com sucesso" });
   } catch (error) {
     console.error("Erro no registro:", error);
+    return res.status(500).json({ error: "Erro interno do servidor" });
+  }
+};
+
+export const loginUser = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const { email, password } = req.body;
+
+    // Validação básica
+    if (!email || !password) {
+      return res.status(400).json({ error: "Email e senha são obrigatórios" });
+    }
+
+    // Buscar usuário
+    const user = await prisma.user.findUnique({ where: { email } });
+    
+    if (!user) {
+      return res.status(401).json({ error: "Credenciais inválidas" });
+    }
+
+    // Verificar senha
+    const validPassword = await comparePassword(password, user.password)
+    
+    if (!validPassword) {
+      return res.status(401).json({ error: "Credenciais inválidas" });
+    }
+
+    // Gerar token
+    const token = generateToken(user.id, user.name);
+
+    // Configurar cookie
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 3600000 // 1 hora
+    });
+
+    return res.status(200).json({ message: "Login realizado com sucesso" });
+
+  } catch (error) {
+    console.error("Erro no login:", error);
     return res.status(500).json({ error: "Erro interno do servidor" });
   }
 };

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clima Já - Registrar Usuário</title>
     <!-- Estilos principais -->
-    <link rel="stylesheet" href="/styles/css/registerStyle.css" />
+    <link rel="stylesheet" href="/styles/css/loginStyle.css" />
     <!-- Font Awesome para ícones -->
     <link
       rel="stylesheet"
@@ -15,40 +15,26 @@
       referrerpolicy="no-referrer"
     />
     <link rel="icon" type="imagex/png" href="/assets/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
-    
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"/>
+
     <!-- Scripts de interação -->
+     <script defer src="/src/scripts/handlers/loginHandler.js"></script>
     <script defer src="/src/scripts/handlers/showPasswordHandler.js"></script>
     <script src="/src/scripts/handlers/themeHandler.js"></script>
   </head>
   <body>
     <main class="form-container">
       <header class="form-header">
-        <h1 class="form-title">Criar Conta</h1>
+        <h1 class="form-title">Acesse sua conta!</h1>
         <a href="/auth/registro" class="btn-default" aria-label="Ir para Login">
           <i class="fa-solid fa-right-to-bracket"></i>
         </a>
       </header>
 
-      <form action="/user/register" method="post" class="form" novalidate>
+      <form action="/user/login" method="post" class="form" novalidate>
         <div class="input-container">
-          <div class="input-box">
-            <label for="name" class="form-label">Nome</label>
-            <div class="input-field">
-              <input
-                type="text"
-                name="name"
-                id="name"
-                class="form-control"
-                placeholder="Digite seu nome"
-                required
-              />
-              <i class="fa-regular fa-user"></i>
-            </div>
-          </div>
-
           <div class="input-box">
             <label for="email" class="form-label">E-mail</label>
             <div class="input-field">
@@ -57,7 +43,7 @@
                 name="email"
                 id="email"
                 class="form-control"
-                placeholder="Digite seu e-mail (exemplo@gmail.com)"
+                placeholder="Digite seu e-mail"
                 required
               />
               <i class="fa-regular fa-envelope"></i>
@@ -72,37 +58,20 @@
                 name="password"
                 id="password"
                 class="form-control"
-                placeholder="Crie uma senha segura"
-                required
-              />
-              <i class="fa-regular fa-eye-slash password-icon"></i>
-            </div>
-          </div>
-
-          <div class="input-box">
-            <label for="confirm_password" class="form-label"
-              >Confirmar Senha</label
-            >
-            <div class="input-field">
-              <input
-                type="password"
-                name="confirm_password"
-                id="confirm_password"
-                class="form-control"
-                placeholder="Repita a senha criada"
+                placeholder="Digite sua senha"
                 required
               />
               <i class="fa-regular fa-eye-slash password-icon"></i>
             </div>
           </div>
         </div>
-        
+
         <button type="submit" class="btn-default">
           <i class="fa-solid fa-check"></i>
-          Criar Conta
+          Entrar
         </button>
-        
-        <div id="server-error" class="error-message" style="display: none;"></div>
+
+        <div id="server-error" class="error-message" style="display: none"></div>
       </form>
     </main>
   </body>

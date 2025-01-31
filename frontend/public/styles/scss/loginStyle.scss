@@ -1,0 +1,241 @@
+/* Importando fontes com subsets limitados para melhorar a performance */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;500&display=swap&subset=latin");
+
+/* Variáveis globais do sistema */
+// Espaçamentos
+$spacing: (
+  "sm": 8px,
+  "md": 16px,
+  "lg": 24px,
+  "xl": 32px,
+);
+
+// Breakpoints
+$breakpoints: (
+  "mobile": 480px,
+  "tablet": 768px,
+  "desktop": 1024px,
+);
+
+/* Definições de temas e variáveis relacionadas */
+:root {
+  // Cores base
+  --color-error: #da0000;
+  --color-success: #1ba53b;
+
+  // Tema escuro
+  --bg: #1c1f24;
+  --card-bg: #2b3744;
+  --btn-bg: #ffffff;
+  --input-bg: #1f1f1f;
+  --text: #ffffff;
+  --text-alt: #a0d8f1;
+  --outline: #658899;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --highlight: #ffcc00;
+
+  // Fontes
+  --font-main: "Poppins", sans-serif;
+  --font-body: "Roboto", sans-serif;
+
+  // Transições
+  --transition: 0.3s ease;
+}
+
+[data-theme="light"] {
+  --bg: #f5faff;
+  --card-bg: #ffffff;
+  --btn-bg: #333333;
+  --input-bg: #d3d3d3;
+  --text: #1e1e1e;
+  --text-alt: #a3d4f7;
+  --outline: #4a90e2;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Reset e estilos base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  padding: map-get($spacing, "md");
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+/* Componentes */
+.form-container {
+  --form-max-width: 600px;
+
+  width: min(90%, var(--form-max-width));
+  margin: auto;
+  padding: map-get($spacing, "xl");
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  position: relative; // Contexto para posicionamento absoluto
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: map-get($spacing, "lg");
+}
+
+.form-title {
+  font-family: var(--font-main);
+  font-weight: 600;
+  color: var(--text);
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 3px;
+    margin-top: map-get($spacing, "sm");
+    background: var(--text-alt);
+    border-radius: 3px;
+  }
+}
+
+.btn-default {
+  padding: map-get($spacing, "sm") map-get($spacing, "md");
+  background: var(--btn-bg);
+  color: var(--bg);
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+
+  &:hover {
+    transform: translateY(-2px);
+    background-color: var(--highlight);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--outline);
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: map-get($spacing, "lg");
+}
+
+.input-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: map-get($spacing, "md");
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.input-field {
+  display: flex;
+  align-items: center;
+  background: var(--input-bg);
+  border-radius: 8px;
+  transition: outline var(--transition), box-shadow var(--transition);
+
+  &:focus-within {
+    outline: 2px solid var(--outline);
+    box-shadow: 0 2px 8px rgba(var(--outline), 0.2);
+  }
+
+  i {
+    width: 40px;
+    color: var(--btn-bg);
+    text-align: center;
+  }
+}
+
+.password-icon {
+  cursor: pointer;
+  &:hover {
+    transform: translateY(-2px);
+    color: var(--highlight);
+  }
+}
+
+.form-control {
+  width: 100%;
+  padding: map-get($spacing, "md");
+  border: none;
+  background: transparent;
+  color: var(--text);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+/* Estilos responsivos */
+@media (max-width: map-get($breakpoints, "mobile")) {
+  .form-container
+
+  .form-header {
+    flex-direction: column;
+    gap: map-get($spacing, "md");
+    text-align: center;
+
+    .form-title::after {
+      margin: map-get($spacing, "sm") auto 0;
+    }
+  }
+}
+
+.error {
+  margin-top: 0.5rem;
+  color: var(--color-error);
+}
+
+
+.input-box.invalid {
+  .form-label  {
+    color: var(--color-error);
+  }
+
+  .input-field {
+    border: 2px solid var(--color-error);
+  }
+}
+
+.input-box.valid {
+  .form-label  {
+    color: var(--color-success);
+  }
+
+  .input-field {
+    border: 2px solid var(--color-success);
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Personalizações para autofill de inputs */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset;
+  -webkit-text-fill-color: var(--text);
+  caret-color: var(--bg); // Melhoria de acessibilidade
+}

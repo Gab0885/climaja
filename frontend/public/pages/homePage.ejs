@@ -49,7 +49,7 @@
       <nav>
         <i class="fa-solid fa-circle-half-stroke"></i>
         <% if (typeof user !== 'undefined' && user) { %>
-        <p>Olá, <span id="userName"><%= user.name %></span>!</p>
+        <p>Olá, <span id="userName"><%= user.name %></span> !</p>
         <a href="/auth/logout">Sair</a>
         <% } else { %>
         <a href="/auth/login">Login</a>
