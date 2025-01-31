@@ -25,10 +25,6 @@
     <script src="/src/scripts/handlers/themeHandler.js"></script>
   </head>
   <body>
-    <% if (typeof message !== 'undefined' && message) { %>
-    <div class="message <%= type %>"><%= message %></div>
-    <% } %>
-
     <main class="form-container">
       <header class="form-header">
         <h1 class="form-title">Criar Conta</h1>
@@ -101,11 +97,13 @@
             </div>
           </div>
         </div>
-
+        
         <button type="submit" class="btn-default">
           <i class="fa-solid fa-check"></i>
           Criar Conta
         </button>
+        
+        <div id="server-error" class="error-message" style="display: none;"></div>
       </form>
     </main>
   </body>

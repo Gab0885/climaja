@@ -2,6 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const formElement = document.querySelector(".form");
     const ERROR_ICON = '<i class="fa-solid fa-circle-exclamation"></i>';
+    const submitButton = formElement.querySelector("button[type='submit']");
     const fieldsToValidate = [
         {
             id: "name",
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
             validate: validatePasswordConfirmation,
         },
     ];
-    formElement.addEventListener("submit", (e) => {
+    formElement.addEventListener("submit", async (e) => {
         e.preventDefault();
         let isValid = true;
         fieldsToValidate.forEach((field) => {
@@ -53,7 +54,49 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
         if (isValid) {
-            formElement.submit();
+            try {
+                // Coletar dados do formulário (incluindo confirmação de senha)
+                const formData = {
+                    name: document.getElementById("name").value.trim(),
+                    email: document.getElementById("email").value.trim(),
+                    password: document.getElementById("password")
+                        .value,
+                    confirm_password: document.getElementById("confirm_password").value,
+                };
+                // Enviar requisição
+                const response = await fetch("/user/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData),
+                });
+                // Tratar erro HTTP
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || "Erro no registro");
+                }
+                // Salvar token e redirecionar
+                const { token } = await response.json();
+                localStorage.setItem("authToken", token);
+                window.location.href = "/";
+            }
+            catch (error) {
+                // Mostrar erro para o usuário
+                const errorContainer = formElement.querySelector(".error-message");
+                if (errorContainer) {
+                    let errorMessage = "Erro desconhecido";
+                    // Verificar se é uma instância de Error
+                    if (error instanceof Error) {
+                        errorMessage = error.message;
+                    }
+                    errorContainer.style.display = "block";
+                    errorContainer.classList.add("error");
+                    errorContainer.innerHTML = `${ERROR_ICON} ${errorMessage}`;
+                }
+            }
+            finally {
+                // Restaurar texto do botão
+                submitButton.textContent = "Cadastrar";
+            }
         }
     });
 });

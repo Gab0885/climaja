@@ -186,11 +186,7 @@ body {
 
 /* Estilos responsivos */
 @media (max-width: map-get($breakpoints, "mobile")) {
-  .form-container,
-  .message {
-    width: 100%;
-    padding: map-get($spacing, "md");
-  }
+  .form-container
 
   .form-header {
     flex-direction: column;

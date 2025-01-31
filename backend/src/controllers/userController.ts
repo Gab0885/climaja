@@ -3,30 +3,32 @@ import { createUser } from "../services/userService";
 import { prisma } from "../config/database";
 import { generateToken } from "../utils/jwt";
 
-export const registerUser = async (req: Request, res: Response) => {
+export const registerUser = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   try {
-    const { email } = req.body;
+    const { email, password, confirm_password, name } = req.body;
 
-    // Verificar se usuário já existe
-    const existingUser = await prisma.user.findUnique({
-      where: { email },
-    });
-    if (existingUser) {
-      res.status(400).json({ error: "Email já está cadastrado" });
+    // Validação de senha
+    if (password !== confirm_password) {
+      return res.status(400).json({ error: "As senhas não coincidem" });
     }
 
-    // Tentar criar o usuário
-    const user = await createUser(req.body);
+    // Verificar usuário existente
+    const existingUser = await prisma.user.findUnique({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ error: "Email já está cadastrado" });
+    }
 
-    // Gerar token JWT
+    // Criar usuário
+    const user = await createUser({ name, email, password });
     const token = generateToken(user.id);
 
-    res.status(201).json({
-      token,
-      user: { id: user.id, email: user.email },
-    });
+    // Resposta de sucesso
+    return res.status(201).json({ token }); // Adicione return aqui
   } catch (error) {
     console.error("Erro no registro:", error);
-    res.status(500).json({ error: "Erro interno do servidor" });
+    return res.status(500).json({ error: "Erro interno do servidor" });
   }
 };
