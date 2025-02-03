@@ -14,18 +14,20 @@ export const authMiddleware = (
       const decoded = jwt.verify(token, getJwtSecret()) as {
         userId: number;
         name: string;
+        favorites: string[];
         iat?: number;
         exp?: number;
       };
 
       // Validação adicional de tipos
-      if (typeof decoded.userId !== 'number' || typeof decoded.name !== 'string') {
+      if (typeof decoded.userId !== 'number' || typeof decoded.name !== 'string' || typeof decoded.favorites !== "object") {
         throw new Error('Token invalido!');
       }
 
       res.locals.user = {
         id: decoded.userId,
         name: decoded.name,
+        favorites: decoded.favorites,
       };
     } catch (err) {
       console.error('Erro de autenticação:', err);

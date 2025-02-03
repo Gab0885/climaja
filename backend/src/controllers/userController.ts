@@ -29,7 +29,7 @@ export const registerUser = async (
 
     // Criar usuário
     const user = await createUser({ name, email, password });
-    const token = generateToken(user.id, user.name);
+    const token = generateToken(user.id, user.name, []);
 
     res.cookie("jwt", token, {
       httpOnly: true,
@@ -57,33 +57,38 @@ export const loginUser = async (
       return res.status(400).json({ error: "Email e senha são obrigatórios" });
     }
 
-    // Buscar usuário
-    const user = await prisma.user.findUnique({ where: { email } });
-    
+    // Buscar usuário e cidade favorita
+    const user = await prisma.user.findUnique({
+      where: { email },
+      include: { favorites: true },
+    });
+
     if (!user) {
       return res.status(401).json({ error: "Credenciais inválidas" });
     }
 
     // Verificar senha
-    const validPassword = await comparePassword(password, user.password)
-    
+    const validPassword = await comparePassword(password, user.password);
+
     if (!validPassword) {
       return res.status(401).json({ error: "Credenciais inválidas" });
     }
 
+    // Extrair nomes das cidades favoritas
+    const favoriteCities = user.favorites.map((fav) => fav.cityName);
+
     // Gerar token
-    const token = generateToken(user.id, user.name);
+    const token = generateToken(user.id, user.name, favoriteCities);
 
     // Configurar cookie
-    res.cookie('jwt', token, {
+    res.cookie("jwt", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 3600000 // 1 hora
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 3600000, // 1 hora
     });
 
     return res.status(200).json({ message: "Login realizado com sucesso" });
-
   } catch (error) {
     console.error("Erro no login:", error);
     return res.status(500).json({ error: "Erro interno do servidor" });
@@ -92,11 +97,11 @@ export const loginUser = async (
 
 export const logoutUser = (req: Request, res: Response) => {
   // Limpa o cookie
-  res.clearCookie('jwt', {
+  res.clearCookie("jwt", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
-    path: '/'
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    path: "/",
   });
-  res.redirect('/');
+  res.redirect("/");
 };
