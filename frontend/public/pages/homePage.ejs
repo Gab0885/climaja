@@ -35,10 +35,22 @@
 
     <!-- Scripts de interação -->
     <script defer type="module" src="/src/scripts/homePageMain.js"></script>
-    <script defer type="module" src="/src/scripts/handlers/citySearchHandler.js"></script>
+    <script
+      defer
+      type="module"
+      src="/src/scripts/handlers/citySearchHandler.js"
+    ></script>
     <script defer type="module" src="/src/scripts/utils/domUtils.js"></script>
-    <script defer type="module" src="/src/scripts/handlers/weatherHandler.js"></script>
-    <script defer type="module" src="/src/scripts/services/weatherService.js"></script>
+    <script
+      defer
+      type="module"
+      src="/src/scripts/handlers/weatherHandler.js"
+    ></script>
+    <script
+      defer
+      type="module"
+      src="/src/scripts/services/weatherService.js"
+    ></script>
     <script defer src="/src/scripts/handlers/themeHandler.js"></script>
   </head>
   <body>
@@ -49,7 +61,7 @@
       <nav>
         <i class="fa-solid fa-circle-half-stroke"></i>
         <% if (typeof user !== 'undefined' && user) { %>
-        <p>Olá, <span id="userName"><%= user.name %></span> !</p>
+        <p>Olá, <span id="userName"><%= user.name %></span>!</p>
         <a href="/auth/logout">Sair</a>
         <% } else { %>
         <a href="/auth/login">Login</a>
@@ -77,7 +89,10 @@
 
         <!-- Seção de exibição do clima -->
         <section id="weather">
-          <h1 id="title"></h1>
+          <div class="title-container">
+            <h1 id="title"></h1>
+            <i id="favorite-icon" class="fa-regular fa-star"></i>
+          </div>
 
           <div id="infos">
             <!-- Temperatura principal -->
@@ -129,9 +144,10 @@
       </div>
 
       <section id="recomendations">
-        <!-- Recomendações de cidades favoritas -->
-        <% if (typeof user !== 'undefined' && user && user.favoriteCities &&
-        user.favoriteCities.length > 0) { %> %>
+        <% if (typeof user !== 'undefined' && user) { %>
+        <!-- Usuário logado -->
+        <% if (user.favoriteCities && user.favoriteCities.length > 0) { %>
+        <!-- Com cidades favoritas -->
         <div id="favorite-cities-user">
           <h2>Cidades Favoritas</h2>
           <ul>
@@ -140,13 +156,33 @@
             <% }); %>
           </ul>
         </div>
-        <% } %>
-
-        <!-- Avisa o visitante que ele precisa ter uma conta para salvar cidades favoritas -->
-        <% if (typeof user === 'undefined') { %>
+        <% } else { %>
+        <!-- Sem cidades favoritas (mostrar instruções) -->
+        <div class="favorite-instructions">
+          <h2>Como favoritar cidades</h2>
+          <div id="instruction-steps">
+            <p>Para salvar uma cidade como favorita:</p>
+            <ol>
+              <li>Busque uma cidade no campo acima</li>
+              <li>
+                Clique na estrela
+                <i class="fa-regular fa-star highlight-icon"></i> ao lado do
+                nome da cidade
+              </li>
+            </ol>
+          </div>
+        </div>
+        <% } %> <% } else { %>
+        <!-- Visitante não logado -->
         <div id="favorite-cities-visitant">
           <h2>Cidades Favoritas</h2>
-          <p>Você deve ter uma conta para salvar uma cidade como favorita.</p>
+          <div class="visitant-message">
+            <p>
+              Você deve ter uma conta para salvar cidades favoritas.
+              <a href="/auth/login">Faça login</a> ou
+              <a href="/auth/registro">Registre-se</a>
+            </p>
+          </div>
         </div>
         <% } %>
       </section>

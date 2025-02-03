@@ -74,6 +74,7 @@ h3 {
   font-weight: 600;
 }
 
+// Estilização do Header
 header {
   display: flex;
   justify-content: space-between;
@@ -140,6 +141,9 @@ header {
   }
 }
 
+//  Estilização dos Favoritos (Cidades)
+
+/* Container de cidades favoritas do usuário */
 #favorite-cities-user {
   width: 90%;
   max-width: 405px;
@@ -181,6 +185,7 @@ header {
   }
 }
 
+/* Container de cidades favoritas para visitantes */
 #favorite-cities-visitant {
   width: 90%;
   max-width: 405px;
@@ -207,9 +212,61 @@ header {
     color: var(--text-primary);
     font-size: 0.9rem;
   }
+
+  a {
+    margin: 10px;
+  }
 }
 
-/* Estilos gerais do container principal */
+/* Instruções de uso dos Favoritos */
+.favorite-instructions {
+  width: 90%;
+  max-width: 405px;
+  margin: 2.5rem auto;
+  background-color: var(--favorite-bg);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 6px var(--box-shadow);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: var(--text-secondary);
+  }
+
+  #instruction-steps {
+    background-color: var(--favorite-item-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: var(--text-primary);
+
+    p,
+    ol {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    ol {
+      padding-left: 0.3rem;
+
+      li {
+        margin-bottom: 0.3rem;
+        list-style-position: inside;
+      }
+    }
+
+    .highlight-icon {
+      color: var(--highlight);
+      margin: 0 0.2rem;
+    }
+  }
+}
+
+//  Estilos do Container Principal
+
 #container {
   display: flex;
   flex-direction: column;
@@ -276,11 +333,28 @@ header {
   margin-top: 20px;
   display: none;
 
-  #title {
-    text-align: center;
+  .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     margin-bottom: 5px;
+  }
+
+  #title {
     font-weight: 600;
     color: var(--text-primary);
+    margin: 0;
+  }
+
+  #favorite-icon {
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--highlight);
+    }
   }
 
   &.show {
@@ -288,7 +362,7 @@ header {
   }
 }
 
-/* Estilo da temperatura principal */
+// Exibição da Temperatura
 #temperature {
   display: flex;
   align-items: center;
@@ -352,7 +426,7 @@ header {
   }
 }
 
-/* Mantendo as cores dos ícones inalteradas pois são indicativas */
+// Cores Indicativas dos Ícones
 .temperature-max-icon {
   color: #c70202;
 }
@@ -369,6 +443,7 @@ header {
   color: #b8aeaec5;
 }
 
+// Estilização de Avisos
 #warn {
   display: none;
 
@@ -384,7 +459,7 @@ header {
   }
 }
 
-/* Estilos do Footer */
+// Estilização do Footer
 .footer {
   background-color: var(--card-bg);
   color: var(--text-primary);
@@ -432,6 +507,9 @@ header {
   }
 }
 
+//  Media Queries para Telas Maiores e Responsividade
+
+/* Estilos para telas com largura mínima definida */
 @media (min-width: $breakpoint-xl) {
   main {
     padding: var($spacing-lg);
@@ -445,7 +523,7 @@ header {
   }
 }
 
-// Media Queries para Responsividade
+/* Estilos responsivos para telas médias */
 @media (max-width: $breakpoint-md) {
   #header {
     display: grid;
@@ -515,7 +593,7 @@ header {
   }
 }
 
-/* Estilo responsivo para até 436px */
+/* Estilos responsivos para telas pequenas (até 436px) */
 @media (max-width: $breakpoint-sm) {
   #header {
     grid-template-areas:
@@ -561,7 +639,7 @@ header {
     }
   }
 
-  /* Estilizando o input do #weather */
+  /* Ajuste no placeholder do input na seção de busca/clima */
   #search input::placeholder {
     font-size: 0.8rem;
   }
