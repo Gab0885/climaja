@@ -20,7 +20,7 @@ export const authMiddleware = (
       };
 
       // Validação adicional de tipos
-      if (typeof decoded.userId !== 'number' || typeof decoded.name !== 'string' || typeof decoded.favorites !== "object") {
+      if (typeof decoded.userId !== 'number' || typeof decoded.name !== 'string' || !Array.isArray(decoded.favorites)) {
         throw new Error('Token invalido!');
       }
 
