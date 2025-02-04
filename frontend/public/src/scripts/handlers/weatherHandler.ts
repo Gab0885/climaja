@@ -1,3 +1,5 @@
+import { normalizeCityName } from "./citySearchHandler.js";
+
 interface WeatherData {
   name: string;
   sys: { country: string };
@@ -37,6 +39,9 @@ export function updateWeatherUI(data: WeatherData): void {
 
   // Atualização dos valores no DOM
   cityElement.textContent = `${data.name}, ${data.sys.country}`;
+  // Define o nome canônico para uso em favoritos
+  cityElement.setAttribute("data-city", normalizeCityName(data.name));
+
   temperatureDescriptionElement.textContent = description; // Atualiza a descrição
   temperatureElement.innerHTML = formatTemperature(data.main.temp);
   temperatureMaxElement.innerHTML = formatTemperature(data.main.temp_max);

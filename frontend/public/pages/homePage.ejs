@@ -51,6 +51,7 @@
       type="module"
       src="/src/scripts/services/weatherService.js"
     ></script>
+    <script defer type="module" src="/src/scripts/handlers/favoritesHandler.js"></script>
     <script defer src="/src/scripts/handlers/themeHandler.js"></script>
   </head>
   <body>
@@ -62,7 +63,7 @@
         <i class="fa-solid fa-circle-half-stroke"></i>
         <% if (typeof user !== 'undefined' && user) { %>
         <p>Olá, <span id="userName"><%= user.name %></span>!</p>
-        <a href="/auth/logout">Sair</a>
+        <a href="/user/logout">Sair</a>
         <% } else { %>
         <a href="/auth/login">Login</a>
         <a href="/auth/registro">Registrar</a>
@@ -90,7 +91,7 @@
         <!-- Seção de exibição do clima -->
         <section id="weather">
           <div class="title-container">
-            <h1 id="title"></h1>
+            <h1 data-city id="title"></h1>
             <i id="favorite-icon" class="fa-regular fa-star"></i>
           </div>
 
@@ -150,16 +151,27 @@
         <!-- Com cidades favoritas -->
         <div id="favorite-cities-user">
           <h2>Cidades Favoritas (Máximo 3)</h2>
-          <ul>
+          <ul id="favorite-cities-list">
             <% user.favorites.slice(0, 3).forEach(city => { %>
-            <li><%= city %></li>
-            <% }); %>
+            <li class="favorite-city-item">
+              <button class="city-button">
+                <span class="city-name"><%= city %></span>
+              </button>
+              <button
+                class="remove-city-button"
+                data-city="<%= city %>"
+                aria-label="Remover <%= city %> dos favoritos"
+              >
+                <i class="fas fa-times"></i>
+              </button>
+            </li>
+            <% }) %>
           </ul>
         </div>
         <% } else { %>
         <!-- Sem cidades favoritas (mostrar instruções) -->
         <div class="favorite-instructions">
-          <h2>Como favoritar cidades</h2>
+          <h2>Como favoritar cidades?</h2>
           <div id="instruction-steps">
             <p>Para salvar uma cidade como favorita:</p>
             <ol>
@@ -185,6 +197,18 @@
           </div>
         </div>
         <% } %>
+
+        <!-- Template para itens de favoritos (oculto) -->
+        <template id="favorite-item-template">
+          <li class="favorite-city-item">
+            <button class="city-button">
+              <span class="city-name"></span>
+            </button>
+            <button class="remove-city-button" aria-label="">
+              <i class="fas fa-times"></i>
+            </button>
+          </li>
+        </template>
       </section>
     </main>
 

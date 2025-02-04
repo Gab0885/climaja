@@ -10,9 +10,12 @@ document.querySelector("#search")?.addEventListener("submit", async (event) => {
     const cityName = normalizeCityName(cityInput.value);
     await handleCitySearch(cityName);
 });
-document.querySelectorAll("#favorite-cities-user ul li").forEach((cityElement) => {
-    cityElement.addEventListener("click", async () => {
-        const cityName = normalizeCityName(cityElement.textContent || "");
+// Se os itens iniciais de favoritos foram renderizados pelo EJS, os cliques neles também disparam a pesquisa:
+document.querySelectorAll("#favorite-cities-user ul li .city-button").forEach((button) => {
+    button.addEventListener("click", async (event) => {
+        // Evita que o clique em algum botão interno (como remover) dispare a pesquisa
+        event.stopPropagation();
+        const cityName = normalizeCityName(button.textContent || "");
         await handleCitySearch(cityName);
     });
 });

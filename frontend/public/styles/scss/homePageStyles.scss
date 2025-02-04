@@ -166,20 +166,47 @@ header {
     padding: 0;
 
     li {
-      background-color: var(--favorite-item-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 0.5rem;
-      padding: 0.5rem 1rem;
+      display: flex;
+      gap: 0.5rem; // Espaço entre os botões
       margin-bottom: 0.5rem;
-      color: var(--text-primary);
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
 
-      &:hover {
-        transform: translateY(-1px);
-        background-color: var(--favorite-hover-bg);
-        color: var(--favorite-hover-color);
+      .city-button {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        background-color: var(--favorite-item-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        color: var(--text-primary);
+        font-size: 0.9rem;
         cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-1px);
+          background-color: var(--favorite-hover-bg);
+          color: var(--favorite-hover-color);
+        }
+      }
+
+      .remove-city-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        background-color: var(--favorite-item-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        color: var(--color-error);
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: var(--color-error);
+          color: #ffffff;
+          transform: translateY(-1px);
+        }
       }
     }
   }
@@ -266,7 +293,6 @@ header {
 }
 
 //  Estilos do Container Principal
-
 #container {
   display: flex;
   flex-direction: column;
