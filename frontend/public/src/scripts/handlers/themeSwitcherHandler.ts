@@ -1,5 +1,4 @@
-// Lógica para troca de tema no aplicativo
-
+// Lógica para troca de tema via botão
 const themeSwitcher = document.querySelector(".fa-solid.fa-circle-half-stroke");
 
 // Verifica se o botão de troca de tema foi encontrado
@@ -17,11 +16,3 @@ if (themeSwitcher) {
     localStorage.setItem("theme", newTheme);
   });
 }
-
-// Carrega o tema salvo ao iniciar a página
-document.addEventListener("DOMContentLoaded", () => {
-  const savedTheme = localStorage.getItem("theme") || "dark";
-
-  // Aplica o tema salvo ou o tema padrão 'dark'
-  document.documentElement.setAttribute("data-theme", savedTheme);
-});
