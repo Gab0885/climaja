@@ -6,6 +6,8 @@ $spacing-lg: 2rem;
 $spacing-md: 1rem;
 
 // Variáveis de Breakpoints
+$breakpoint-xxs: 350px;
+$breakpoint-xs: 400px;
 $breakpoint-sm: 436px;
 $breakpoint-md: 700px;
 $breakpoint-xl: 1200px;
@@ -90,7 +92,7 @@ header {
   }
 
   h1 {
-    position: absolute; /* Centraliza o título independentemente dos outros elementos */
+    position: absolute; /* usado no desktop para centralizar */
     left: 50%;
     transform: translateX(-50%);
     font-size: 1.5rem;
@@ -314,7 +316,7 @@ header {
   gap: 0.5rem;
   border: 1px solid var(--border-color);
   border-radius: 0.625rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.8rem;
   background-color: var(--search-bg);
   transition: background-color 0.3s ease, border-color 0.3s ease;
 
@@ -485,6 +487,11 @@ header {
   }
 }
 
+// Separação entre o conteúdo das cidades favoritas e o footer
+main {
+  padding-bottom: 2rem; // Garante que haja espaço suficiente acima do footer fixo
+}
+
 // Estilização do Footer
 .footer {
   background-color: var(--card-bg);
@@ -551,46 +558,41 @@ header {
 
 /* Estilos responsivos para telas médias */
 @media (max-width: $breakpoint-md) {
-  #header {
-    display: grid;
-    grid-template-areas:
-      "logo title icon"
-      "nav nav nav";
-    grid-template-columns: auto 1fr auto;
+  header {
+    /* Muda o layout para empilhar os elementos verticalmente */
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    text-align: center;
-    gap: 15px;
-
-    img {
-      grid-area: logo;
-      max-width: 105px;
-      margin: 0 auto;
-    }
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    position: relative;
 
     h1 {
-      grid-area: title;
+      position: static;
+      transform: none;
       font-size: 1.5rem;
-      margin: 0;
+      margin: 0.5rem 0;
+      white-space: nowrap;
     }
 
-    i {
-      grid-area: icon;
+    img {
+      display: block;
       margin: 0 auto;
-      font-size: 1.6rem;
+    }
+
+    .fa-circle-half-stroke {
+      margin: 0 auto 0.5rem auto;
+      font-size: 1.8rem;
     }
 
     nav {
-      grid-area: nav;
       display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
       gap: 10px;
 
-      a {
-        padding: 0px 20px; /* Botões maiores para toque */
-        font-size: 1rem;
-        text-align: center;
-        width: 100%; /* Centraliza os botões em telas menores */
-        max-width: 215px;
+      a,
+      p {
+        font-size: 1.2rem;
       }
     }
   }
@@ -602,12 +604,6 @@ header {
       #search {
         width: 100%;
         max-width: 100%;
-        input {
-          padding: 0.5rem;
-        }
-        button {
-          padding: 0.5rem;
-        }
       }
 
       #weather {
@@ -617,56 +613,72 @@ header {
       }
     }
   }
+
+  main {
+    padding-bottom: 4rem;
+  }
 }
 
 /* Estilos responsivos para telas pequenas (até 436px) */
 @media (max-width: $breakpoint-sm) {
-  #header {
-    grid-template-areas:
-      "logo logo"
-      "title title"
-      "icon icon"
-      "nav nav";
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+  #container,
+  #favorite-cities-user,
+  #favorite-cities-visitant,
+  .favorite-instructions {
+    width: 93%;
+  }
+}
 
-    img {
-      grid-area: logo;
-      max-width: 80px;
-      margin: 0 auto;
+/* Estilos responsivos para telas pequenas (até 400px) */
+@media (max-width: $breakpoint-xs) {
+  //  Ajuste do Formulário de Busca
+  #search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    input {
+      flex: 1;
+      min-width: 0;
+      font-size: 0.9rem;
+
+      /* Ajuste no placeholder do input na seção de busca/clima */
+      &::placeholder {
+        font-size: 0.8rem;
+      }
     }
 
-    h1 {
-      grid-area: title;
-      font-size: 1.2rem;
-      margin: 0;
-      text-align: center;
-      padding-bottom: 15px;
-    }
-
-    i {
-      grid-area: icon;
-      font-size: 1.5rem;
-      margin: 0 auto;
-      padding-left: 0.5rem;
-    }
-
-    nav {
-      grid-area: nav;
+    button {
       display: flex;
       justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-
-      a {
-        font-size: 0.9rem;
-        max-width: 150px;
-      }
     }
   }
 
-  /* Ajuste no placeholder do input na seção de busca/clima */
-  #search input::placeholder {
-    font-size: 0.8rem;
+  // Arruma o tamanho do valor da temperatura
+  #temperature_value {
+    font-size: 2.2rem;
+  }
+
+  #more_infos .info {
+    padding: 4px 5px;
+
+    // Ajusta as informações para não quebrar de linha
+    h2 {
+      font-size: 1rem;
+    }
+
+    i {
+      margin-right: 0.6rem;
+    }
+  }
+}
+
+/* Estilos responsivos para telas pequenas (até 400px) */
+@media (max-width: $breakpoint-xxs) {
+  #weather #title {
+    font-size: 1.5rem;
+  }
+  #temperature_value {
+    font-size: 1.6rem;
   }
 }

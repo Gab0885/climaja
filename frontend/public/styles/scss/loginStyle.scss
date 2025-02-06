@@ -2,20 +2,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@400;500&display=swap&subset=latin");
 
 /* Variáveis globais do sistema */
+
 // Espaçamentos
-$spacing: (
-  "sm": 8px,
-  "md": 16px,
-  "lg": 24px,
-  "xl": 32px,
-);
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
 
 // Breakpoints
-$breakpoints: (
-  "mobile": 480px,
-  "tablet": 768px,
-  "desktop": 1024px,
-);
+$breakpoint-xs: 343px;
+$breakpoint-sm: 425px;
+$breakpoint-md: 575px;
+$breakpoint-xl: 1024px;
 
 /* Definições de temas e variáveis relacionadas */
 :root {
@@ -63,7 +61,7 @@ $breakpoints: (
 body {
   display: flex;
   min-height: 100vh;
-  padding: map-get($spacing, "md");
+  padding: $spacing-md;
   font-family: var(--font-body);
   background-color: var(--bg);
   color: var(--text);
@@ -77,7 +75,7 @@ body {
 
   width: min(90%, var(--form-max-width));
   margin: auto;
-  padding: map-get($spacing, "xl");
+  padding: $spacing-xl;
   background: var(--card-bg);
   border-radius: 12px;
   box-shadow: var(--shadow);
@@ -88,7 +86,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: map-get($spacing, "lg");
+  margin-bottom: $spacing-lg;
 }
 
 .form-title {
@@ -99,16 +97,16 @@ body {
   &::after {
     content: "";
     display: block;
-    width: 100px;
+    width: 285px;
     height: 3px;
-    margin-top: map-get($spacing, "sm");
+    margin-top: 2px;
     background: var(--text-alt);
     border-radius: 3px;
   }
 }
 
 .btn-default {
-  padding: map-get($spacing, "sm") map-get($spacing, "md");
+  padding: $spacing-sm $spacing-md;
   background: var(--btn-bg);
   color: var(--bg);
   border: none;
@@ -130,13 +128,13 @@ body {
 .form {
   display: flex;
   flex-direction: column;
-  gap: map-get($spacing, "lg");
+  gap: $spacing-lg;
 }
 
 .input-container {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: map-get($spacing, "md");
+  gap: $spacing-md;
 }
 
 .form-label {
@@ -174,7 +172,7 @@ body {
 
 .form-control {
   width: 100%;
-  padding: map-get($spacing, "md");
+  padding: $spacing-md;
   border: none;
   background: transparent;
   color: var(--text);
@@ -184,29 +182,13 @@ body {
   }
 }
 
-/* Estilos responsivos */
-@media (max-width: map-get($breakpoints, "mobile")) {
-  .form-container
-
-  .form-header {
-    flex-direction: column;
-    gap: map-get($spacing, "md");
-    text-align: center;
-
-    .form-title::after {
-      margin: map-get($spacing, "sm") auto 0;
-    }
-  }
-}
-
 .error {
   margin-top: 0.5rem;
   color: var(--color-error);
 }
 
-
 .input-box.invalid {
-  .form-label  {
+  .form-label {
     color: var(--color-error);
   }
 
@@ -216,7 +198,7 @@ body {
 }
 
 .input-box.valid {
-  .form-label  {
+  .form-label {
     color: var(--color-success);
   }
 
@@ -225,6 +207,12 @@ body {
   }
 }
 
+/* Personalizações para autofill de inputs */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset;
+  -webkit-text-fill-color: var(--text);
+  caret-color: var(--bg); // Melhoria de acessibilidade
+}
 
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -233,9 +221,31 @@ body {
   }
 }
 
-/* Personalizações para autofill de inputs */
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset;
-  -webkit-text-fill-color: var(--text);
-  caret-color: var(--bg); // Melhoria de acessibilidade
+/* Estilos responsivos */
+@media (max-width: $breakpoint-md) {
+  .form-container .form-header {
+    flex-direction: column;
+    gap: $spacing-md;
+    text-align: center;
+
+    .form-title::after {
+      margin: 0 auto 0;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .form-title {
+    font-size: 1.5rem;
+  }
+
+  .form-title::after {
+    width: 190px;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .form-title {
+    font-size: 1.35rem;
+  }
 }

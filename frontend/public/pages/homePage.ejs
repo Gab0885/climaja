@@ -28,8 +28,8 @@
     <header id="header">
       <img src="/assets/ClimaJa-logo.png" alt="Logo ClimaJá!" />
       <h1>Bem Vindo ao ClimaJá!</h1>
+      <i class="fa-solid fa-circle-half-stroke"></i>
       <nav>
-        <i class="fa-solid fa-circle-half-stroke"></i>
         <% if (typeof user !== 'undefined' && user) { %>
         <p>Olá, <span id="userName"><%= user.name %></span>!</p>
         <a href="/user/logout">Sair</a>
@@ -50,7 +50,7 @@
             type="search"
             name="city_name"
             id="city_name"
-            placeholder="Deseja saber o clima de qual cidade"
+            placeholder="Deseja saber o clima de qual cidade?"
           />
           <button type="submit">
             <i class="fa-solid fa-magnifying-glass"></i>
