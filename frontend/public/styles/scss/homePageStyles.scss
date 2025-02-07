@@ -248,7 +248,7 @@ header {
 }
 
 /* Instruções de uso dos Favoritos */
-.favorite-instructions {
+#favorite-instructions {
   width: 90%;
   max-width: 405px;
   margin: 2.5rem auto;
@@ -540,6 +540,14 @@ main {
   }
 }
 
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
 //  Media Queries para Telas Maiores e Responsividade
 
 /* Estilos para telas com largura mínima definida */
@@ -624,7 +632,7 @@ main {
   #container,
   #favorite-cities-user,
   #favorite-cities-visitant,
-  .favorite-instructions {
+  #favorite-instructions {
     width: 93%;
   }
 }

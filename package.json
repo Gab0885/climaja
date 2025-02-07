@@ -10,7 +10,7 @@
     "build": "npm run build:scss && npm run build:ts && npm run copy-files",
     "start:dev": "nodemon --watch backend/src --exec ts-node backend/src/app.ts",
     "dev": "npm-run-all --parallel build:scss start:dev",
-    "start": "node build/backend/app.js",
+    "start": "node build/backend/src/app.js",
     "clean": "rimraf build && mkdir build"
   },
   "keywords": [],

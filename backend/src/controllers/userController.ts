@@ -98,7 +98,12 @@ export const loginUser = async (
 export const addFavorite = async (req: Request, res: Response) => {
   try {
     const userId = res.locals.user.id;
-    const { cityName } = req.body;
+    let { cityName } = req.body;
+
+    if (typeof cityName !== "string" || cityName.trim() === "") {
+      return res.status(400).json({ error: "Nome de cidade inválido" });
+    }
+    cityName = cityName.trim();
 
     // Verificar se o usuário existe e obter os favoritos
     const user = await prisma.user.findUnique({
@@ -107,17 +112,17 @@ export const addFavorite = async (req: Request, res: Response) => {
     });
 
     if (!user) {
-      return res.status(404).json({ error: 'Usuário não encontrado' });
+      return res.status(404).json({ error: "Usuário não encontrado" });
     }
 
     // Limite de 3 favoritos
     if (user.favorites.length >= 3) {
-      return res.status(400).json({ error: 'Máximo de 3 cidades favoritas alcançado' });
+      return res.status(400).json({ error: "Máximo de 3 cidades favoritas alcançado" });
     }
 
     // Verifica se a cidade já está nos favoritos
     if (user.favorites.some(fav => fav.cityName === cityName)) {
-      return res.status(400).json({ error: 'Cidade já está nos favoritos' });
+      return res.status(400).json({ error: "Cidade já está nos favoritos" });
     }
 
     // Adicionar novo favorito
@@ -125,12 +130,12 @@ export const addFavorite = async (req: Request, res: Response) => {
 
     // Atualiza a lista e gera novo token
     const { favorites, token } = await updateFavorites(userId, res.locals.user.name);
-    res.cookie('jwt', token, cookieOptions);
+    res.cookie("jwt", token, cookieOptions);
     res.json({ favorites });
     
   } catch (error) {
-    console.error('Erro ao adicionar favorito:', error);
-    res.status(500).json({ error: 'Erro interno' });
+    console.error("Erro ao adicionar favorito:", error);
+    res.status(500).json({ error: "Erro interno" });
   }
 };
 
@@ -138,18 +143,23 @@ export const addFavorite = async (req: Request, res: Response) => {
 export const removeFavorite = async (req: Request, res: Response) => {
   try {
     const userId = res.locals.user.id;
-    const { cityName } = req.body;
+    let { cityName } = req.body;
+
+    if (typeof cityName !== "string" || cityName.trim() === "") {
+      return res.status(400).json({ error: "Nome de cidade inválido" });
+    }
+    cityName = cityName.trim();
 
     await prisma.favorite.deleteMany({ where: { userId, cityName } });
 
     // Atualiza a lista e gera novo token
     const { favorites, token } = await updateFavorites(userId, res.locals.user.name);
-    res.cookie('jwt', token, cookieOptions);
+    res.cookie("jwt", token, cookieOptions);
     res.json({ favorites });
     
   } catch (error) {
-    console.error('Erro ao remover favorito:', error);
-    res.status(500).json({ error: 'Erro interno' });
+    console.error("Erro ao remover favorito:", error);
+    res.status(500).json({ error: "Erro interno" });
   }
 };
 

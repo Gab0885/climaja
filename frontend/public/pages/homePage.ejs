@@ -60,7 +60,7 @@
         <!-- Seção de exibição do clima -->
         <section id="weather">
           <div class="title-container">
-            <h1 data-city id="title"></h1>
+            <h1 data-city="" id="title"></h1>
             <i id="favorite-icon" class="fa-regular fa-star"></i>
           </div>
 
@@ -114,57 +114,48 @@
       </div>
 
       <section id="recomendations">
-        <% if (typeof user !== 'undefined') { %>
-        <!-- Usuário logado -->
-        <% if (user.favorites && user.favorites.length > 0) { %>
-        <!-- Com cidades favoritas -->
-        <div id="favorite-cities-user">
-          <h2>Cidades Favoritas (Máximo 3)</h2>
-          <ul id="favorite-cities-list">
-            <% user.favorites.slice(0, 3).forEach(city => { %>
-            <li class="favorite-city-item">
-              <button class="city-button">
-                <span class="city-name"><%= city %></span>
-              </button>
-              <button
-                class="remove-city-button"
-                data-city="<%= city %>"
-                aria-label="Remover <%= city %> dos favoritos"
-              >
-                <i class="fas fa-times"></i>
-              </button>
-            </li>
-            <% }) %>
-          </ul>
-        </div>
+        <% if (typeof user !== 'undefined' && user) { %>
+          <!-- Containers sempre renderizados para o usuário logado -->
+          <div id="favorite-cities-user" class="<%= user.favorites && user.favorites.length > 0 ? 'visible' : 'hidden' %>">
+            <h2>Cidades Favoritas (Máximo 3)</h2>
+            <ul id="favorite-cities-list">
+              <% if (user.favorites && user.favorites.length > 0) { %>
+                <% user.favorites.slice(0, 3).forEach(city => { %>
+                  <li class="favorite-city-item">
+                    <button class="city-button">
+                      <span class="city-name"><%= city %></span>
+                    </button>
+                    <button class="remove-city-button" data-city="<%= city %>" aria-label="Remover <%= city %> dos favoritos">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </li>
+                <% }); %>
+              <% } %>
+            </ul>
+          </div>
+          <div id="favorite-instructions" class="<%= user.favorites && user.favorites.length > 0 ? 'hidden' : 'visible' %>">
+            <h2>Como favoritar cidades?</h2>
+            <div id="instruction-steps">
+              <p>Para salvar uma cidade como favorita:</p>
+              <ol>
+                <li>Busque uma cidade no campo acima</li>
+                <li>
+                  Clique na estrela <i class="fa-regular fa-star highlight-icon"></i> ao lado do nome da cidade
+                </li>
+              </ol>
+            </div>
+          </div>
         <% } else { %>
-        <!-- Sem cidades favoritas (mostrar instruções) -->
-        <div class="favorite-instructions">
-          <h2>Como favoritar cidades?</h2>
-          <div id="instruction-steps">
-            <p>Para salvar uma cidade como favorita:</p>
-            <ol>
-              <li>Busque uma cidade no campo acima</li>
-              <li>
-                Clique na estrela
-                <i class="fa-regular fa-star highlight-icon"></i> ao lado do
-                nome da cidade
-              </li>
-            </ol>
+          <!-- Container para visitantes não logados -->
+          <div id="favorite-cities-visitant">
+            <h2>Cidades Favoritas</h2>
+            <div class="visitant-message">
+              <p>
+                Você deve ter uma conta para salvar cidades favoritas.
+                <a href="/auth/login">Faça login</a> ou <a href="/auth/registro">Registre-se</a>
+              </p>
+            </div>
           </div>
-        </div>
-        <% } %> <% } else { %>
-        <!-- Visitante não logado -->
-        <div id="favorite-cities-visitant">
-          <h2>Cidades Favoritas</h2>
-          <div class="visitant-message">
-            <p>
-              Você deve ter uma conta para salvar cidades favoritas.
-              <a href="/auth/login">Faça login</a> ou
-              <a href="/auth/registro">Registre-se</a>
-            </p>
-          </div>
-        </div>
         <% } %>
 
         <!-- Template para itens de favoritos (oculto) -->

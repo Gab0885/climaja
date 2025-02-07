@@ -7,17 +7,16 @@ import { router as userRoutes } from "./routes/userRoutes";
 import cookieParser from "cookie-parser"
 import { authMiddleware } from "./middlewares/authMiddleware";
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-
 const app = express();
+
+const projectRoot = process.cwd();
 
 // Configuração do EJS como mecanismo de visualização
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../../frontend/public/pages"));
+app.set("views", path.join(projectRoot, "frontend", "public", "pages"));
 
 // Servir arquivos estáticos
-app.use(express.static(path.join(__dirname, "../../frontend/public")));
+app.use(express.static(path.join(projectRoot, "frontend", "public")));
 
 // Middleware para parsing de requisições
 app.use(express.json());
