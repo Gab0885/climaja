@@ -1,4 +1,3 @@
-// favoriteApi.ts
 // Comunica com a API para atualizar os favoritos.
 export const updateFavoriteCities = async (endpoint, cityName) => {
     const response = await fetch(endpoint, {

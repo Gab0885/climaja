@@ -61,12 +61,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href = "/";
             }
             catch (error) {
-                // Resetar estado visual da senha
+                // Resetar estado visual da senha e email
+                const emailContainer = document
+                    .getElementById("email")
+                    ?.closest(".input-box");
                 const passwordContainer = document
                     .getElementById("password")
                     ?.closest(".input-box");
-                passwordContainer?.classList.remove("valid");
-                passwordContainer?.classList.add("invalid");
+                throwVisualError(emailContainer);
+                throwVisualError(passwordContainer);
                 // Exibir erro geral
                 const errorContainer = formElement.querySelector(".error-message");
                 if (errorContainer) {
@@ -103,4 +106,8 @@ function validateLoginPassword(value) {
         return { valid: false, message: "Mínimo de 6 caracteres!" };
     }
     return { valid: true };
+}
+function throwVisualError(container) {
+    container.classList.remove("valid");
+    container.classList.add("invalid");
 }
