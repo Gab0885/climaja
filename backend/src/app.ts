@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import { weatherRouter } from "./routes/weatherRoutes";
-import { router as homeRoutes } from "./routes/homeRouters";
+import { router as homeRoutes } from "./routes/homeRoutes";
 import { router as authRoutes } from "./routes/authRoutes";
 import { router as userRoutes } from "./routes/userRoutes";
 import cookieParser from "cookie-parser"
