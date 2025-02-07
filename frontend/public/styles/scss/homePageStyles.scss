@@ -10,7 +10,8 @@ $breakpoint-xxs: 350px;
 $breakpoint-xs: 400px;
 $breakpoint-sm: 436px;
 $breakpoint-md: 700px;
-$breakpoint-xl: 1200px;
+$breakpoint-lg: 810px;
+$breakpoint-xl: 980px;
 
 /* Variáveis de tema */
 :root {
@@ -102,7 +103,7 @@ header {
 
   .fa-circle-half-stroke {
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: 15px;
     font-size: 1.4rem;
     cursor: pointer;
     transition: color 0.3s ease;
@@ -115,10 +116,11 @@ header {
 
   nav {
     display: flex;
+    align-items: center;
     gap: 10px;
 
     a {
-      text-decoration: none;
+      text-decoration: underline;
       color: var(--text-primary);
       font-size: 1rem;
       transition: color 0.3s ease;
@@ -137,6 +139,12 @@ header {
     }
 
     #userName {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 180px;
+      display: inline-block;
+      vertical-align: middle;
       font-weight: 600;
       color: var(--highlight);
     }
@@ -550,15 +558,29 @@ main {
 
 //  Media Queries para Telas Maiores e Responsividade
 
-/* Estilos para telas com largura mínima definida */
-@media (min-width: $breakpoint-xl) {
-  main {
-    padding: var($spacing-lg);
+/* Estilos responsivos para telas muito grandes */
+@media (max-width: $breakpoint-xl) {
+  header {
+    .fa-circle-half-stroke {
+      margin-right: 10px;
+    }
+    nav p {
+      #userName {
+        max-width: 75px;
+      }
+    }
+  }
+}
 
-    #weather {
-      #infos {
-        grid-template-columns: repeat(4, 1fr);
-        gap: var($spacing-md);
+/* Estilos responsivos para telas grandes */
+@media (max-width: $breakpoint-lg) {
+  header {
+    .fa-circle-half-stroke {
+      margin-right: 5px;
+    }
+    nav p {
+      #userName {
+        max-width: 50px;
       }
     }
   }
@@ -600,7 +622,12 @@ main {
 
       a,
       p {
+        white-space: nowrap;
         font-size: 1.2rem;
+      }
+
+      p #userName {
+        max-width: 200px;
       }
     }
   }
@@ -635,10 +662,21 @@ main {
   #favorite-instructions {
     width: 93%;
   }
+
+  header nav p {
+    #userName {
+      max-width: 150px;
+    }
+  }
 }
 
 /* Estilos responsivos para telas pequenas (até 400px) */
 @media (max-width: $breakpoint-xs) {
+  header nav p {
+    #userName {
+      max-width: 135px;
+    }
+  }
   //  Ajuste do Formulário de Busca
   #search {
     display: flex;
