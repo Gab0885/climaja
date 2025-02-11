@@ -15,7 +15,7 @@
   },
   "keywords": [],
   "author": "Gabriel Dias",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@prisma/client": "^6.2.1",
     "bcrypt": "^5.1.1",
