@@ -10,6 +10,6 @@ if (!process.env.api_URL || !process.env.api_KEY) {
 
 // Exportar as configurações
 export const config = {
-  apiUrl: process.env.API_URL as string,
-  apiKey: process.env.API_KEY as string,
+  apiUrl: process.env.api_URL as string,
+  apiKey: process.env.api_KEY as string,
 };
