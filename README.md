@@ -121,7 +121,7 @@ frontend/
 │       │   ├── utils/       # Funções utilitárias para o frontend
 │       │   └── handlers/    # Handlers para eventos (busca de cidade, login, etc.)
 │       └── homePageMain.ts  # Script principal da home
-└── package.json             # Configuração do Typescript
+└── tsconfig.json            # Configuração do Typescript
 ```
 
 ## Variáveis de Ambiente
