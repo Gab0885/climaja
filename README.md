@@ -154,6 +154,33 @@ NODE_ENV=development
 - **Recuperação de Senha**
 - **Previsão Estendida**
 
+## Instalação e Execução
+
+```bash
+git clone https://github.com/Gab0885/climaja.git
+cd climaja
+npm install
+```
+
+Antes de iniciar o servidor, defina as variáveis de ambiente corretamente.
+
+Comandos ara rodar a aplicação:
+```bash
+npm run build
+npm run start
+```
+
+Comandos ara rodar a aplicação como dev:
+```bash
+npm run dev
+```
+
+## Agradecimentos
+
+Agradecemos à **OpenWeather API** por fornecer os dados meteorológicos utilizados neste projeto.
+
+Agradecemos também a todos os colaboradores que ajudaram a melhorar e expandir o **ClimaJá**!
+
 ## Contribuição
 
 1. **Fork o repositório.**
@@ -180,5 +207,6 @@ Este aplicativo utiliza a API OpenWeather para obter informações meteorológic
 
 ## Contato
 
-- **Email:** gabrieldg0885@gmail.com  
+- **Email:** gabrieldg0885@gmail.com
+- **LinkedIn:** [Gabriel Dias](https://www.linkedin.com/in/gabriel-dias-dev-web/)  
 - **GitHub:** [Gabriel Dias](https://github.com/Gab0885)
