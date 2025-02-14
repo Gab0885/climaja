@@ -208,5 +208,5 @@ Este aplicativo utiliza a API OpenWeather para obter informações meteorológic
 ## Contato
 
 - **Email:** gabrieldg0885@gmail.com
-- **LinkedIn:** [Gabriel Dias](https://www.linkedin.com/in/gabriel-dias-dev-web/)  
+- **LinkedIn:** [Gabriel Dias](https://www.linkedin.com/in/gabriel-dias-/)  
 - **GitHub:** [Gabriel Dias](https://github.com/Gab0885)
