@@ -7,6 +7,8 @@
 
 O **ClimaJá** é uma aplicação web que fornece informações climáticas em tempo real. Ela foi desenvolvida para oferecer uma solução prática, elegante e eficiente para visualizar as condições atuais para qualquer cidade. Com um design responsivo e intuitivo, o app garante uma experiência excelente em desktops, tablets e smartphones.
 
+![Tela inicial do ClimaJá, exibindo as condições climáticas para a cidade de São Paulo](https://github.com/user-attachments/assets/58b96e9c-3bf0-499c-af62-d69312a6bb5c)
+
 ## Objetivo Geral
 
 O projeto tem como propósito proporcionar aos usuários uma ferramenta confiável para acessar dados climáticos de suas cidades de interesse. Além de oferecer informações atualizadas, o ClimaJa permite que os usuários salvem suas cidades favoritas, agilizando futuras consultas.
@@ -164,13 +166,13 @@ npm install
 
 Antes de iniciar o servidor, defina as variáveis de ambiente corretamente.
 
-Comandos ara rodar a aplicação:
+Comandos para rodar a aplicação:
 ```bash
 npm run build
 npm run start
 ```
 
-Comandos ara rodar a aplicação como dev:
+Comandos para rodar a aplicação como dev:
 ```bash
 npm run dev
 ```
