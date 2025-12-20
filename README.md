@@ -7,6 +7,8 @@
 
 O **ClimaJá** é uma aplicação web que fornece informações climáticas em tempo real. Ela foi desenvolvida para oferecer uma solução prática, elegante e eficiente para visualizar as condições atuais para qualquer cidade. Com um design responsivo e intuitivo, o app garante uma experiência excelente em desktops, tablets e smartphones.
 
+![Tela inicial do ClimaJá, exibindo as condições climáticas para a cidade de São Paulo](https://github.com/user-attachments/assets/58b96e9c-3bf0-499c-af62-d69312a6bb5c)
+
 ## Objetivo Geral
 
 O projeto tem como propósito proporcionar aos usuários uma ferramenta confiável para acessar dados climáticos de suas cidades de interesse. Além de oferecer informações atualizadas, o ClimaJa permite que os usuários salvem suas cidades favoritas, agilizando futuras consultas.
@@ -154,6 +156,33 @@ NODE_ENV=development
 - **Recuperação de Senha**
 - **Previsão Estendida**
 
+## Instalação e Execução
+
+```bash
+git clone https://github.com/Gab0885/climaja.git
+cd climaja
+npm install
+```
+
+Antes de iniciar o servidor, defina as variáveis de ambiente corretamente.
+
+Comandos para rodar a aplicação:
+```bash
+npm run build
+npm run start
+```
+
+Comandos para rodar a aplicação como dev:
+```bash
+npm run dev
+```
+
+## Agradecimentos
+
+Agradecemos à **OpenWeather API** por fornecer os dados meteorológicos utilizados neste projeto.
+
+Agradecemos também a todos os colaboradores que ajudaram a melhorar e expandir o **ClimaJá**!
+
 ## Contribuição
 
 1. **Fork o repositório.**
@@ -180,5 +209,6 @@ Este aplicativo utiliza a API OpenWeather para obter informações meteorológic
 
 ## Contato
 
-- **Email:** gabrieldg0885@gmail.com  
+- **Email:** gabrieldg0885@gmail.com
+- **LinkedIn:** [Gabriel Dias](https://www.linkedin.com/in/gabriel-dias-/)  
 - **GitHub:** [Gabriel Dias](https://github.com/Gab0885)
