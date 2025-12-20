@@ -26,6 +26,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 app.use(authMiddleware)
 
+// Rotas para SEO
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.sendFile(path.join(projectRoot, 'frontend', 'public', 'robots.txt'));
+});
+
+app.get('/sitemap.xml', (req, res) => {
+  res.type('application/xml');
+  res.sendFile(path.join(projectRoot, 'frontend', 'public', 'sitemap.xml'));
+});
+
 // Rotas
 app.use("/", homeRoutes);
 app.use("/auth", authRoutes);
