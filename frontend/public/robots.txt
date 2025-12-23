@@ -1,9 +1,7 @@
 User-agent: *
-Allow: /
-Allow: /auth/login
-Allow: /auth/registro
-Disallow: /user/logout
-Disallow: /user/favorites/
 Disallow: /api/
+Disallow: /user/logout
+Disallow: /user/favorites/add
+Disallow: /user/favorites/remove
 
 Sitemap: https://climaja.onrender.com/sitemap.xml
