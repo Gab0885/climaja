@@ -3,10 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ClimaJá - Previsão do Tempo Precisa e Rápida | Consulte o Clima de Qualquer Cidade</title>
+    <title>ClimaJá - Previsão do Tempo Simplificada</title>
     
     <!-- Meta Tags SEO -->
-    <meta name="description" content="Consulte a previsão do tempo de qualquer cidade do mundo. Informações precisas e atualizadas sobre temperatura, umidade, vento e clima. Salve suas cidades favoritas!" />
+    <meta name="description" content="Consulte rapidamente a previsão do tempo. Informações atualizadas sobre temperatura, umidade e vento. Salve suas cidades favoritas!" />
+    <meta name="application-name" content="ClimaJá!" />
+    <meta name="apple-mobile-web-app-title" content="ClimaJá!" />
     <meta name="keywords" content="previsão do tempo, clima, temperatura, meteorologia, previsão climática, tempo hoje, clima hoje, weather forecast" />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="Gabriel Dias" />
@@ -14,8 +16,9 @@
     
     <!-- Open Graph Meta Tags -->
     <meta name="google-site-verification" content="kf1aYQjlPmcE6BvUq4QOQXwf0-3huzqIxdx3S1M8eUM" />
+    <meta property="og:site_name" content="ClimaJá!" />
     <meta property="og:title" content="ClimaJá - Previsão do Tempo" />
-    <meta property="og:description" content="Consulte a previsão do tempo de qualquer cidade. Informações sobre temperatura, umidade e vento." />
+    <meta property="og:description" content="Previsão do tempo simplificada. Informações sobre temperatura, umidade e vento." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://climaja.onrender.com" />
     <meta property="og:image" content="https://climaja.onrender.com/assets/ClimaJa-logo.png" />
@@ -23,8 +26,9 @@
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ClimaJa" />
     <meta name="twitter:title" content="ClimaJá - Previsão do Tempo" />
-    <meta name="twitter:description" content="Consulte a previsão do tempo de qualquer cidade" />
+    <meta name="twitter:description" content="Previsão do tempo simplificada de qualquer cidade!" />
     <meta name="twitter:image" content="https://climaja.onrender.com/assets/ClimaJa-logo.png" />
     
     <!-- Canonical URL -->
@@ -40,6 +44,18 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"/>
 
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ClimaJá!",
+    "alternateName": "ClimaJa",
+    "url": "https://climaja.onrender.com",
+    "description": "Consulte a previsão do tempo de qualquer cidade do mundo"
+    }
+    </script>
+    
     <!-- Scripts de interação -->
     <script defer type="module" src="/src/scripts/homePageMain.js"></script>
     <script defer type="module" src="/src/scripts/handlers/citySearchHandler.js"></script>
